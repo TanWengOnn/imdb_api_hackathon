@@ -10,7 +10,7 @@ class SearchLoading extends SearchState {}
 
 // loaded
 class SearchLoaded extends SearchState {
-  final SearchModel searchModel;
+  final MovieModel searchModel;
   SearchLoaded({required this.searchModel});
 }
 

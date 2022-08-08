@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:imdb_api_hackathon/models/search_model.dart';
 
 class SearchService {
-  Future<SearchModel> fetchSearchInformation({String? titleName, String? genre}) async {
+  Future<MovieModel> fetchSearchInformation({String? titleName, String? genre}) async {
     const String apiKey = "k_8dgpz1mi";
     // k_2b0tzkax
     // k_mvigl067
@@ -19,7 +19,7 @@ class SearchService {
 
     if (response.statusCode == 200) {
       print("service: ${url}");
-      return SearchModel.fromJson(response.body);
+      return MovieModel.fromJson(response.body);
     }
     else{
       throw Exception("Failed to load weather information.");

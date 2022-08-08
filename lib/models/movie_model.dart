@@ -5,8 +5,8 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-class SearchModel {
-  SearchModel({
+class MovieModel {
+  MovieModel({
     required this.queryString,
     required this.results,
     required this.errorMessage,
@@ -16,11 +16,11 @@ class SearchModel {
   final List<Result> results;
   final dynamic errorMessage;
 
-  factory SearchModel.fromJson(String str) => SearchModel.fromMap(json.decode(str));
+  factory MovieModel.fromJson(String str) => MovieModel.fromMap(json.decode(str));
 
   // String toJson() => json.encode(toMap());
 
-  factory SearchModel.fromMap(Map<String, dynamic> json) => SearchModel(
+  factory MovieModel.fromMap(Map<String, dynamic> json) => MovieModel(
     queryString: json["queryString"],
     results: List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
     errorMessage: json["errorMessage"],

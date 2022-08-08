@@ -4,7 +4,7 @@ import 'package:imdb_api_hackathon/models/search_model.dart';
 class MovieList extends StatelessWidget {
   const MovieList({Key? key, required this.searchModel}) : super(key: key);
 
-  final SearchModel searchModel;
+  final MovieModel searchModel;
 
   @override
   Widget build(BuildContext context) {

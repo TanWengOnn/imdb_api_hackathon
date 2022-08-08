@@ -12,7 +12,7 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchLoading());
 
     try {
-      SearchModel searchModel = await searchService.fetchSearchInformation(titleName: title);
+      MovieModel searchModel = await searchService.fetchSearchInformation(titleName: title);
       emit(SearchLoaded(searchModel: searchModel));
     } catch (e) {
       emit(SearchError(errorMessage: e.toString()));
