@@ -2,16 +2,17 @@ import 'package:http/http.dart' as http;
 import 'package:imdb_api_hackathon/models/search_model.dart';
 
 class SearchService {
-  Future<SearchModel> fetchSearchInformation(String titleName) async {
+  Future<SearchModel> fetchSearchInformation({String? titleName, String? genre}) async {
     const String apiKey = "k_8dgpz1mi";
     // k_2b0tzkax
     // k_mvigl067
+    // k_8dgpz1mi
 
     final Uri url = Uri(
       scheme: 'https',
       host: 'imdb-api.com',
       path: 'API/AdvancedSearch/$apiKey',
-      queryParameters: {'title': titleName},
+      queryParameters: {'title': titleName, 'genres': genre},
     );
 
     http.Response response = await http.get(url);

@@ -4,6 +4,7 @@ import 'package:imdb_api_hackathon/services/search_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/states/search_state.dart';
+import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: Text("Search"),
       ),
-      body:ListView(
+      body: ListView(
         scrollDirection: Axis.vertical,
         children: [
           TextField(
@@ -49,33 +50,15 @@ class _SearchPageState extends State<SearchPage> {
           ),
           BlocBuilder<SearchCubit, SearchState>(
             bloc: cubit,
-            builder:(context, state) {
-              if(state is SearchLoading) {
-                return CircularProgressIndicator();
-              }
-
-              if (titleController.text.isNotEmpty ){
-                if(state is SearchLoaded && state.searchModel.results.isNotEmpty) {
-                  return ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: state.searchModel.results.length,
-                    physics: ScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                          child: Column(
-                            children: [
-                              Image.network("${state.searchModel.results.elementAt(index).image}", height: 20),
-                              Text("${state.searchModel.results.elementAt(index).title}"),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
+            builder: (context, state) {
+              if (titleController.text.isNotEmpty) {
+                if (state is SearchLoading) {
+                  return CircularProgressIndicator();
                 }
-                else{
+                if (state is SearchLoaded &&
+                    state.searchModel.results.isNotEmpty) {
+                  return MovieList(searchModel: state.searchModel);
+                } else {
                   return Text("invalid search");
                 }
               }
@@ -88,6 +71,25 @@ class _SearchPageState extends State<SearchPage> {
   }
 }
 
+
+// ListView.builder(
+//                     scrollDirection: Axis.vertical,
+//                     shrinkWrap: true,
+//                     itemCount: state.searchModel.results.length,
+//                     physics: ScrollPhysics(),
+//                     itemBuilder: (context, index) {
+//                       return Card(
+//                         child: Container(
+//                           child: Column(
+//                             children: [
+//                               Image.network("${state.searchModel.results.elementAt(index).image}", height: 20),
+//                               Text("${state.searchModel.results.elementAt(index).title}"),
+//                             ],
+//                           ),
+//                         ),
+//                       );
+//                     },
+//                   );
 
 
 
