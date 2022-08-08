@@ -49,9 +49,11 @@ class _SearchPageState extends State<SearchPage> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                setState(() {
-                  searchButton(title: titleController.text, genres: movieGenres);
-                });
+                if(titleController.text.isNotEmpty || movieGenres != ''){
+                  setState(() {
+                    searchButton(title: titleController.text, genres: movieGenres);
+                  });
+                }
               },
               child: Text("Search"),
             ),
@@ -104,12 +106,11 @@ class _SearchPageState extends State<SearchPage> {
           BlocBuilder<SearchCubit, SearchState>(
             bloc: cubit,
             builder: (context, state) {
-              if (titleController.text.isNotEmpty) {
+              if (titleController.text.isNotEmpty || movieGenres != '') {
                 if (state is SearchLoading) {
                   return CircularProgressIndicator();
                 }
-                if (state is SearchLoaded &&
-                    state.searchModel.results.isNotEmpty) {
+                if (state is SearchLoaded) {
                   return MovieList(searchModel: state.searchModel);
                 } else {
                   return Text("invalid search");
