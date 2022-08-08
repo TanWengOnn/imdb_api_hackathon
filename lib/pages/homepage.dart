@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_api_hackathon/models/search_model.dart';
+import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/services/search_service.dart';
 
 class HomePage extends StatefulWidget {

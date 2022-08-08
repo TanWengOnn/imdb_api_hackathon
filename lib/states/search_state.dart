@@ -1,4 +1,4 @@
-import 'package:imdb_api_hackathon/models/search_model.dart';
+import 'package:imdb_api_hackathon/models/movie_model.dart';
 
 abstract class SearchState {}
 
