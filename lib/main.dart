@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:imdb_api_hackathon/models/movie_model.dart';
+import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
 import 'package:imdb_api_hackathon/pages/search_page.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'pages/homepage.dart';
@@ -7,8 +9,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(
-      BlocProvider(
-        create: (context) => SearchCubit(),
+      MultiBlocProvider(
+        providers: [
+           BlocProvider(create: (context) => SearchCubit()),
+        ],
         child: MyApp(),
       )
   );
@@ -16,7 +20,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +35,9 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => HomePage());
             case '/search':
               return MaterialPageRoute(builder: (_) => SearchPage());
+            case '/details-page':
+              DetailsPage data = settings.arguments as DetailsPage;
+              return MaterialPageRoute(builder: (_) => DetailsPage(movieDetails: data.movieDetails));
           }
         }
     );

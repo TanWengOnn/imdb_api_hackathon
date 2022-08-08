@@ -7,12 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit() : super(SearchLoading());
 
-  Future<void> fetchSearch(String title) async {
+  Future<void> fetchSearch({String? title, String? genres,}) async {
     SearchService searchService = SearchService();
     emit(SearchLoading());
 
     try {
-      MovieModel searchModel = await searchService.fetchSearchInformation(titleName: title);
+      MovieModel searchModel = await searchService.fetchSearchInformation(titleName: title, genre: genres);
       emit(SearchLoaded(searchModel: searchModel));
     } catch (e) {
       emit(SearchError(errorMessage: e.toString()));
