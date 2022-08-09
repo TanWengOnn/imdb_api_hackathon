@@ -1,19 +1,36 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
 import 'package:imdb_api_hackathon/pages/search_page.dart';
+import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
+
 import 'pages/homepage.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+<<<<<<< HEAD
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => SearchCubit()),
     ],
     child: MyApp(),
   ));
+=======
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SearchCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomepageCubit(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
+>>>>>>> 4e68139c05b2ebee5224f0468f2e00f744706feb
 }
 
 class MyApp extends StatelessWidget {
@@ -24,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+<<<<<<< HEAD
           //brightness: Brightness.dark,
           primaryColor: Colors.white,
           fontFamily: 'Open Sans',
@@ -48,6 +66,9 @@ class MyApp extends StatelessWidget {
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
           ),
+=======
+          primarySwatch: Colors.blue,
+>>>>>>> 4e68139c05b2ebee5224f0468f2e00f744706feb
         ),
         initialRoute: '/',
         onGenerateRoute: (settings) {
