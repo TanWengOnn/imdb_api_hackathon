@@ -43,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search", style: Theme.of(context).textTheme.headline1),
+        title: Text("Search", style: Theme.of(context).textTheme.headline2),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
           color: Colors.black,

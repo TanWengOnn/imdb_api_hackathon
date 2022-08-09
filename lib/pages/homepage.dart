@@ -14,46 +14,31 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("IMDB", style: Theme.of(context).textTheme.headline1),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          actions: [
-            IconButton(
-              padding: EdgeInsets.only(
-                  right: MediaQuery.of(context).size.width * 0.1),
-              icon: Icon(
-                Icons.search,
-                color: Colors.black,
-                size: 35,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, "/search");
-              },
-            ),
-          ]),
-=======
     HomepageCubit cubit = BlocProvider.of<HomepageCubit>(context)
       ..fetchHomepage('1,10');
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movies"),
+        title: Text("Movies", style: Theme.of(context).textTheme.headline2),
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/search");
+            },
+            icon: const Icon(Icons.search),
+            color: Colors.black,
+          )
+        ],
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
+        shrinkWrap: true,
         children: [
-          Center(
-            child: ElevatedButton.icon(
-              label: Text("Search"),
-              onPressed: () {
-                Navigator.pushNamed(context, "/search");
-              },
-              icon: Icon(Icons.search),
-            ),
+          SizedBox(
+            height: 10,
           ),
-          Text('Top 10 Movies/Series'),
+          Text('Top 10 Movies/Series',
+              style: Theme.of(context).textTheme.headline3),
           BlocBuilder<HomepageCubit, HomepageState>(
             bloc: cubit,
             builder: (context, state) {
@@ -69,7 +54,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
->>>>>>> 4e68139c05b2ebee5224f0468f2e00f744706feb
     );
   }
 }

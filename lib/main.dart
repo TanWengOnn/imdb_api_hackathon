@@ -9,14 +9,6 @@ import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'pages/homepage.dart';
 
 void main() {
-<<<<<<< HEAD
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(create: (context) => SearchCubit()),
-    ],
-    child: MyApp(),
-  ));
-=======
   runApp(
     MultiBlocProvider(
       providers: [
@@ -30,7 +22,6 @@ void main() {
       child: MyApp(),
     ),
   );
->>>>>>> 4e68139c05b2ebee5224f0468f2e00f744706feb
 }
 
 class MyApp extends StatelessWidget {
@@ -41,7 +32,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-<<<<<<< HEAD
           //brightness: Brightness.dark,
           primaryColor: Colors.white,
           fontFamily: 'Open Sans',
@@ -66,9 +56,6 @@ class MyApp extends StatelessWidget {
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
           ),
-=======
-          primarySwatch: Colors.blue,
->>>>>>> 4e68139c05b2ebee5224f0468f2e00f744706feb
         ),
         initialRoute: '/',
         onGenerateRoute: (settings) {
