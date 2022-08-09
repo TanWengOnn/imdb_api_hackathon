@@ -3,13 +3,11 @@ import 'package:imdb_api_hackathon/models/movie_model.dart';
 
 class SearchService {
   Future<MovieModel> fetchSearchInformation(
-<<<<<<< HEAD
-      {String? titleName, String? genre, String? moviemeter}) async {
+      {String? titleName,
+      String? genre,
+      String? moviemeter,
+      String? count}) async {
     const String apiKey = "k_2b0tzkax";
-=======
-      {String? titleName, String? genre, String? moviemeter, String? count}) async {
-    const String apiKey = "k_l6oi3cob";
->>>>>>> 5f404efc06e72729842f18c959bfd3630a9d2ead
     // k_2b0tzkax
     // k_mvigl067
     // k_8dgpz1mi
@@ -38,4 +36,3 @@ class SearchService {
     }
   }
 }
-

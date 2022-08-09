@@ -19,18 +19,18 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    homepageCubit = BlocProvider.of<HomepageCubit>(context)..fetchHomepage(moviemeter: '1,10');
-    comedyCubit = BlocProvider.of<ComedyCubit>(context)..fetchComedy(genres: 'Comedy', count: '10');
+    homepageCubit = BlocProvider.of<HomepageCubit>(context)
+      ..fetchHomepage(moviemeter: '1,10');
+    comedyCubit = BlocProvider.of<ComedyCubit>(context)
+      ..fetchComedy(genres: 'Comedy', count: '10');
   }
-
 
   @override
   Widget build(BuildContext context) {
-  
     // void genresButton({String? genres, String? moviemeter}) {
     //   cubit.fetchHomepage(genres: genres, moviemeter: moviemeter, count: "10");
     // }
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Movies", style: Theme.of(context).textTheme.headline2),
@@ -52,13 +52,8 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 10,
           ),
-<<<<<<< HEAD
           Text('Top 10 Movies/Series',
               style: Theme.of(context).textTheme.headline3),
-          BlocBuilder<HomepageCubit, HomepageState>(
-            bloc: cubit,
-=======
-          Text('Top 10 Movies/Series'),
           BlocBuilder<HomepageCubit, MoviesState>(
             bloc: homepageCubit,
             builder: (context, state) {
@@ -75,7 +70,6 @@ class _HomePageState extends State<HomePage> {
           Text("Comedy"),
           BlocBuilder<ComedyCubit, MoviesState>(
             bloc: comedyCubit,
->>>>>>> 5f404efc06e72729842f18c959bfd3630a9d2ead
             builder: (context, state) {
               if (state is MoviesLoading) {
                 return CircularProgressIndicator();
