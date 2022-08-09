@@ -32,7 +32,12 @@ class _SearchPageState extends State<SearchPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Search"),
+        title: Text("Search", style: Theme.of(context).textTheme.headline1),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -71,7 +76,6 @@ class _SearchPageState extends State<SearchPage> {
   }
 }
 
-
 // ListView.builder(
 //                     scrollDirection: Axis.vertical,
 //                     shrinkWrap: true,
@@ -90,7 +94,3 @@ class _SearchPageState extends State<SearchPage> {
 //                       );
 //                     },
 //                   );
-
-
-
-
