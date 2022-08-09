@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class HomeGenresButton extends StatefulWidget {
   
   String label;
-  Function searchButton;
+  Function genresButton;
 
-  HomeGenresButton({required this.searchButton, required this.label});
+  HomeGenresButton({required this.genresButton, required this.label});
 
   @override
   State<HomeGenresButton> createState() => _HomeGenresButtonState();
@@ -18,7 +18,7 @@ class _HomeGenresButtonState extends State<HomeGenresButton> {
             child: ElevatedButton(
               onPressed: () {
                 setState(() {
-                  widget.searchButton();
+                  widget.genresButton();
                 });
               },
               child: Text("${widget.label}"),

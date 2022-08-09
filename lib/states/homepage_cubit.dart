@@ -7,13 +7,13 @@ import 'homepage_state.dart';
 class HomepageCubit extends Cubit<HomepageState> {
   HomepageCubit() : super(HomepageLoading());
 
-  Future<void> fetchHomepage(String moviemeter) async {
+  Future<void> fetchHomepage({String? moviemeter, String? genres, String? count}) async {
     SearchService homepageService = SearchService();
     emit(HomepageLoading());
 
     try {
       MovieModel homepageModel =
-          await homepageService.fetchSearchInformation(moviemeter: moviemeter);
+          await homepageService.fetchSearchInformation(genre: genres, moviemeter: moviemeter, count: count);
       emit(HomepageLoaded(searchModel: homepageModel));
     } catch (e) {
       emit(HomepageError(errorMessage: e.toString()));
