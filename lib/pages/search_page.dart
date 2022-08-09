@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
-import 'package:imdb_api_hackathon/services/search_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/states/search_state.dart';
@@ -40,13 +38,15 @@ class _SearchPageState extends State<SearchPage> {
           TextField(
             controller: titleController,
           ),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                searchButton(titleController.text);
-              });
-            },
-            child: Text("Search"),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  searchButton(titleController.text);
+                });
+              },
+              child: Text("Search"),
+            ),
           ),
           BlocBuilder<SearchCubit, SearchState>(
             bloc: cubit,
@@ -71,7 +71,6 @@ class _SearchPageState extends State<SearchPage> {
   }
 }
 
-
 // ListView.builder(
 //                     scrollDirection: Axis.vertical,
 //                     shrinkWrap: true,
@@ -90,7 +89,3 @@ class _SearchPageState extends State<SearchPage> {
 //                       );
 //                     },
 //                   );
-
-
-
-
