@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
-import 'package:imdb_api_hackathon/services/search_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/states/search_state.dart';
@@ -15,22 +13,21 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  // late SearchModel data;
-
-  // Future<void> getSearch() async {
-  //   SearchService searchInstance = SearchService();
-  //   data = await searchInstance.fetchSearchInformation("inception");
-  // }
-
   TextEditingController titleController = TextEditingController();
-  List genresList = ["Action", "Comedy", "Family", "Crime", "Fantasy", "Horror"];
+  List genresList = [
+    "Action",
+    "Comedy",
+    "Family",
+    "Crime",
+    "Fantasy",
+    "Horror"
+  ];
   String? movieGenres = '';
-
 
   @override
   Widget build(BuildContext context) {
     SearchCubit cubit = BlocProvider.of<SearchCubit>(context);
-    
+
     void searchButton({String? title, String? genres}) {
       cubit.fetchSearch(title: title, genres: genres);
     }
@@ -45,13 +42,16 @@ class _SearchPageState extends State<SearchPage> {
           TextField(
             controller: titleController,
           ),
-          Text(movieGenres == '' ? '' : "Genres: $movieGenres",),
+          Text(
+            movieGenres == '' ? '' : "Genres: $movieGenres",
+          ),
           Center(
             child: ElevatedButton(
               onPressed: () {
-                if(titleController.text.isNotEmpty || movieGenres != ''){
+                if (titleController.text.isNotEmpty || movieGenres != '') {
                   setState(() {
-                    searchButton(title: titleController.text, genres: movieGenres);
+                    searchButton(
+                        title: titleController.text, genres: movieGenres);
                   });
                 }
               },
@@ -70,29 +70,19 @@ class _SearchPageState extends State<SearchPage> {
                   itemCount: genresList.length,
                   itemBuilder: (context, index) {
                     return ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                if (!movieGenres!.contains(genresList[index])){
-                                  movieGenres = movieGenres! + ',' + genresList[index];
-                                }
-                              });
-                            },
-                            child: Text(genresList[index]),
-                          );
+                      onPressed: () {
+                        setState(() {
+                          if (!movieGenres!.contains(genresList[index])) {
+                            movieGenres =
+                                movieGenres! + ',' + genresList[index];
+                          }
+                        });
+                      },
+                      child: Text(genresList[index]),
+                    );
                   },
                 ),
               ),
-              
-              
-
-
-              // Use this in HomePage
-              // GenresButton(label: "Comedy", searchButton: () {
-              //   searchButton(title: titleController.text, genres: "comedy");
-              // }),
-              // GenresButton(label: "Action", searchButton: () {
-              //   searchButton(title: titleController.text, genres: "action");
-              // }),
             ],
           ),
           ElevatedButton(
@@ -124,22 +114,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
-// ListView.builder(
-//                     scrollDirection: Axis.vertical,
-//                     shrinkWrap: true,
-//                     itemCount: state.searchModel.results.length,
-//                     physics: ScrollPhysics(),
-//                     itemBuilder: (context, index) {
-//                       return Card(
-//                         child: Container(
-//                           child: Column(
-//                             children: [
-//                               Image.network("${state.searchModel.results.elementAt(index).image}", height: 20),
-//                               Text("${state.searchModel.results.elementAt(index).title}"),
-//                             ],
-//                           ),
-//                         ),
-//                       );
-//                     },
-//                   );
