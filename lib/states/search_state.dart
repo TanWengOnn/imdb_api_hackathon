@@ -2,8 +2,8 @@ import 'package:imdb_api_hackathon/models/movie_model.dart';
 
 abstract class SearchState {}
 
-// // initialise
-// class WeatherInitial
+// initialise
+class SearchInitial extends SearchState {}
 
 // loading
 class SearchLoading extends SearchState {}
