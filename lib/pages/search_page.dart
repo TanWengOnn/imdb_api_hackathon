@@ -23,6 +23,13 @@ class _SearchPageState extends State<SearchPage> {
   // }
 
   TextEditingController titleController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    super.dispose();
+  }
+
   List genresList = [
     "Action",
     "Comedy",
