@@ -23,14 +23,20 @@ class _SearchPageState extends State<SearchPage> {
   // }
 
   TextEditingController titleController = TextEditingController();
-  List genresList = ["Action", "Comedy", "Family", "Crime", "Fantasy", "Horror"];
+  List genresList = [
+    "Action",
+    "Comedy",
+    "Family",
+    "Crime",
+    "Fantasy",
+    "Horror"
+  ];
   String? movieGenres = '';
-
 
   @override
   Widget build(BuildContext context) {
     SearchCubit cubit = BlocProvider.of<SearchCubit>(context);
-    
+
     void searchButton({String? title, String? genres}) {
       cubit.fetchSearch(title: title, genres: genres);
     }
@@ -39,10 +45,10 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: Text("Search", style: Theme.of(context).textTheme.headline1),
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+        iconTheme: IconThemeData(
+          color: Colors.black,
         ),
+        elevation: 0,
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
@@ -50,13 +56,16 @@ class _SearchPageState extends State<SearchPage> {
           TextField(
             controller: titleController,
           ),
-          Text(movieGenres == '' ? '' : "Genres: $movieGenres",),
+          Text(
+            movieGenres == '' ? '' : "Genres: $movieGenres",
+          ),
           Center(
             child: ElevatedButton(
               onPressed: () {
-                if(titleController.text.isNotEmpty || movieGenres != ''){
+                if (titleController.text.isNotEmpty || movieGenres != '') {
                   setState(() {
-                    searchButton(title: titleController.text, genres: movieGenres);
+                    searchButton(
+                        title: titleController.text, genres: movieGenres);
                   });
                 }
               },
@@ -75,21 +84,19 @@ class _SearchPageState extends State<SearchPage> {
                   itemCount: genresList.length,
                   itemBuilder: (context, index) {
                     return ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                if (!movieGenres!.contains(genresList[index])){
-                                  movieGenres = movieGenres! + ',' + genresList[index];
-                                }
-                              });
-                            },
-                            child: Text(genresList[index]),
-                          );
+                      onPressed: () {
+                        setState(() {
+                          if (!movieGenres!.contains(genresList[index])) {
+                            movieGenres =
+                                movieGenres! + ',' + genresList[index];
+                          }
+                        });
+                      },
+                      child: Text(genresList[index]),
+                    );
                   },
                 ),
               ),
-              
-              
-
 
               // Use this in HomePage
               // GenresButton(label: "Comedy", searchButton: () {

@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
           title: Text("IMDB", style: Theme.of(context).textTheme.headline1),
           backgroundColor: Colors.white,
-          //elevation: 0,
+          elevation: 0,
           actions: [
             IconButton(
               padding: EdgeInsets.only(
