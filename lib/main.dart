@@ -10,6 +10,7 @@ import 'package:imdb_api_hackathon/states/fantasy_cubit.dart';
 import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
 import 'package:imdb_api_hackathon/states/horror_cubit.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
+import 'package:imdb_api_hackathon/states/trailer_cubit.dart';
 
 import 'pages/homepage.dart';
 
@@ -37,6 +38,9 @@ void main() {
         ),
         BlocProvider(
           create: (context) => CrimeCubit(),
+        ),
+        BlocProvider(
+          create: (context) => TrailerCubit(),
         ),
       ],
       child: MyApp(),
