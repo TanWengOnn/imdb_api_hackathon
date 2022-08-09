@@ -4,7 +4,7 @@ import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/services/search_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
-import 'package:imdb_api_hackathon/states/search_state.dart';
+import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 
 class SearchPage extends StatefulWidget {
@@ -110,24 +110,24 @@ class _SearchPageState extends State<SearchPage> {
             },
             child: Text("Clear"),
           ),
-          BlocBuilder<SearchCubit, SearchState>(
+          BlocBuilder<SearchCubit, MoviesState>(
             bloc: cubit,
             builder: (context, state) {
               if ((titleController.text.isNotEmpty || movieGenres != '') &&
-                  state is! SearchInitial) {
-                if (state is SearchLoading) {
+                  state is! MoviesInitial) {
+                if (state is MoviesLoading) {
                   return CircularProgressIndicator();
                 }
-                if (state is SearchLoaded) {
-                  return MovieList(searchModel: state.searchModel);
+                if (state is MoviesLoaded) {
+                  return MovieList(searchModel: state.movieModel);
                 } else {
-                  if (state is SearchError) {
+                  if (state is MoviesError) {
                     print(state.errorMessage);
                   }
                   return Text("invalid search");
                 }
               }
-              return Text(state is SearchError ? state.errorMessage : "");
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
         ],
