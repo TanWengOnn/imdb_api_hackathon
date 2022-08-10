@@ -16,15 +16,17 @@ class MovieModel {
   final List<Result> results;
   final dynamic errorMessage;
 
-  factory MovieModel.fromJson(String str) => MovieModel.fromMap(json.decode(str));
+  factory MovieModel.fromJson(String str) =>
+      MovieModel.fromMap(json.decode(str));
 
   // String toJson() => json.encode(toMap());
 
   factory MovieModel.fromMap(Map<String, dynamic> json) => MovieModel(
-    queryString: json["queryString"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
-    errorMessage: json["errorMessage"],
-  );
+        queryString: json["queryString"],
+        results:
+            List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
+        errorMessage: json["errorMessage"],
+      );
 
   // Map<String, dynamic> toMap() => {
   //   "queryString": queryString,
@@ -71,21 +73,27 @@ class Result {
   // String toJson() => json.encode(toMap());
 
   factory Result.fromMap(Map<String, dynamic> json) => Result(
-    id: json["id"],
-    image: json["image"],
-    title: json["title"],
-    description: json["description"],
-    runtimeStr: json["runtimeStr"] == null ? '' : json["runtimeStr"],
-    genres: json["genres"] == null ? '' : json["genres"],
-    genreList: json["genreList"] == null ? [] : List<GenreList>.from(json["genreList"].map((x) => GenreList.fromMap(x))),
-    contentRating: json["metacriticRating"] == null ? '' : json["contentRating"],
-    imDbRating: json["imDbRating"] == null ? '' : json["imDbRating"],
-    imDbRatingVotes: json["imDbRatingVotes"] == null ? '' : json["imDbRatingVotes"],
-    metacriticRating: json["metacriticRating"] == null ? '' : json["metacriticRating"],
-    plot: json["plot"] == null ? '' : json["plot"],
-    stars: json["stars"] == null ? '' : json["stars"],
-    starList: json["starList"] == null ? [] : List<StarList>.from(json["starList"].map((x) => StarList.fromMap(x))),
-  );
+        id: json["id"],
+        image: json["image"],
+        title: json["title"],
+        description: json["description"],
+        runtimeStr: json["runtimeStr"] ?? '',
+        genres: json["genres"] ?? '',
+        genreList: json["genreList"] == null
+            ? []
+            : List<GenreList>.from(
+                json["genreList"].map((x) => GenreList.fromMap(x))),
+        contentRating: json["contentRating"] ?? '',
+        imDbRating: json["imDbRating"] ?? '',
+        imDbRatingVotes: json["imDbRatingVotes"] ?? '',
+        metacriticRating: json["metacriticRating"] ?? '',
+        plot: json["plot"] ?? '',
+        stars: json["stars"] ?? '',
+        starList: json["starList"] == null
+            ? []
+            : List<StarList>.from(
+                json["starList"].map((x) => StarList.fromMap(x))),
+      );
 
   // Map<String, dynamic> toMap() => {
   //   "id": id,
@@ -119,9 +127,9 @@ class GenreList {
   // String toJson() => json.encode(toMap());
 
   factory GenreList.fromMap(Map<String, dynamic> json) => GenreList(
-    key: json["key"],
-    value: json["value"],
-  );
+        key: json["key"],
+        value: json["value"],
+      );
 
   // Map<String, dynamic> toMap() => {
   //   "key": key,
@@ -143,9 +151,9 @@ class StarList {
   // String toJson() => json.encode(toMap());
 
   factory StarList.fromMap(Map<String, dynamic> json) => StarList(
-    id: json["id"],
-    name: json["name"],
-  );
+        id: json["id"],
+        name: json["name"],
+      );
 
   // Map<String, dynamic> toMap() => {
   //   "id": id,

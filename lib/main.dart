@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
 import 'package:imdb_api_hackathon/pages/search_page.dart';
+import 'package:imdb_api_hackathon/states/comedy_cubit.dart';
 import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 
@@ -18,6 +18,9 @@ void main() {
         BlocProvider(
           create: (context) => HomepageCubit(),
         ),
+        BlocProvider(
+          create: (context) => ComedyCubit(),
+        ),
       ],
       child: MyApp(),
     ),
@@ -32,7 +35,31 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          //brightness: Brightness.dark,
+          primaryColor: Colors.white,
+          fontFamily: 'Open Sans',
+          textTheme: const TextTheme(
+            headline1: TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.w400),
+            headline2: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline3: TextStyle(
+                fontSize: 20,
+                color: Colors.red,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline4: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+          ),
         ),
         initialRoute: '/',
         onGenerateRoute: (settings) {
@@ -43,7 +70,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => SearchPage());
             case '/details-page':
               DetailsPage data = settings.arguments as DetailsPage;
-              return MaterialPageRoute(builder: (_) => DetailsPage(movieDetails: data.movieDetails));
+              return MaterialPageRoute(
+                  builder: (_) => DetailsPage(movieDetails: data.movieDetails));
           }
         });
   }
