@@ -8,19 +8,18 @@ class MovieCategoryList extends StatelessWidget {
       : super(key: key);
 
   final MovieModel searchModel;
+  static const double CATEGORY_POSTER_HEIGHT = 180;
+  static const double CATEGORY_POSTER_WIDTH = CATEGORY_POSTER_HEIGHT / 4.0 * 3;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 200,
-          width: 1500,
-          child: CarouselSlider.builder(
+            CarouselSlider.builder(
             options: CarouselOptions(
               scrollPhysics: ClampingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              viewportFraction: 0.4,
+              viewportFraction: 0.33,
             ),
             itemCount: searchModel.results.length,
             itemBuilder: (context, index, realIndex) {
@@ -51,39 +50,35 @@ class MovieCategoryList extends StatelessWidget {
                 },
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  elevation: 2,
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.network(
-                          searchModel.results.elementAt(index).image,
-                          fit: BoxFit.fill,
-                          height: 160,
-                          width: 120,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  elevation: 0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                         ClipRRect(
+                          borderRadius: BorderRadius.circular(15.0),
+                          child: Image.network(
+                            searchModel.results.elementAt(index).image,
+                            fit: BoxFit.fill,
+                            height: CATEGORY_POSTER_HEIGHT,
+                            width: CATEGORY_POSTER_WIDTH,
+                          ),
                         ),
                         Row(
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                              size: 20.0,
-                            ),
-                            Text(searchModel.results
-                                .elementAt(index)
-                                .imDbRating),
-                          ],
-                        )
+                          mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.star,color: Colors.yellow,size: 25.0,),
+                          Text(searchModel.results.elementAt(index).imDbRating,
+                            style: Theme.of(context).textTheme.subtitle1),
+                            ],
+                          ),
                       ],
                     ),
-                  ),
                 ),
               );
             },
           ),
-        ),
+        
       ],
     );
   }

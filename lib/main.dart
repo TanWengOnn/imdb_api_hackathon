@@ -53,11 +53,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Roboto',
         theme: ThemeData(
-          //brightness: Brightness.dark,
+          scaffoldBackgroundColor: Colors.white,
           primaryColor: Colors.white,
-          fontFamily: 'Open Sans',
+          //fontFamily: 'Open Sans',
           textTheme: const TextTheme(
             //App title
             headline1: TextStyle(
@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 20,
                 color: Color(0xFFE53935),
                 decoration: TextDecoration.none,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.w600),
             headline4: TextStyle(
                 fontSize: 20,
                 color: Colors.white,
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold),
             //paragraph2
             subtitle2: TextStyle(
-                fontSize: 10,
+                fontSize: 12,
                 color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),

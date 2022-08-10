@@ -20,7 +20,7 @@ class _DetailsPageState extends State<DetailsPage> {
   static const double TRAILER_HEIGHT = 300;
   static const double TRAILER_WIDTH = TRAILER_HEIGHT/3.0*4;
   static const double BOTTOM_EXTRA_HEIGHT = 200 ;
-  static const double POSTER_HEIGHT = 420;
+  static const double POSTER_HEIGHT = 360;
   static const double POSTER_WIDTH = POSTER_HEIGHT/4.0*3;
   
   @override
@@ -41,7 +41,7 @@ class _DetailsPageState extends State<DetailsPage> {
         title:
             Text("Movie Details", style: Theme.of(context).textTheme.headline1),
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 1,
         iconTheme: IconThemeData(
           color: ui.Color(0xFFE53935),
         ),

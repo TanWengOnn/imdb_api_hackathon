@@ -27,10 +27,10 @@ class _HomePageState extends State<HomePage> {
   late final HorrorCubit horrorCubit;
   late final CrimeCubit crimeCubit;
 
-  static const double MOVIE_HEIGHT = 290;
-  static const double MOVIE_WIDTH = 220;
-  static const double CATEGORIES_HEIGHT = 160;
-  static const double CATEGORIES_WIDTH = 120;
+  static const double MOVIE_HEIGHT = 280;
+  static const double MOVIE_WIDTH = MOVIE_HEIGHT/4.0*3;
+  static const double CATEGORIES_HEIGHT = 180;
+  static const double CATEGORIES_WIDTH = CATEGORIES_HEIGHT/4.0*3;
   
 
   Widget getMovieInfo({required MoviesState state, required double height, required double width}) {
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Movies", style: Theme.of(context).textTheme.headline1),
         backgroundColor: Colors.white,
-        elevation: 0,
+        elevation: 1,
         actions: [
           IconButton(
             onPressed: () {
@@ -83,47 +83,46 @@ class _HomePageState extends State<HomePage> {
               Icons.search,
               size: 30,
             ),
-            color: Colors.black,
+            color: Color(0xFFE53935),
           )
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
         scrollDirection: Axis.vertical,
         // shrinkWrap: true,
         children: [
+          SizedBox(height:10),
           Text('Top 10 Movies/Series',
               style: Theme.of(context).textTheme.headline3),
           BlocBuilder<HomepageCubit, MoviesState>(
             bloc: homepageCubit,
             builder: (context, state) {
               return getMovieInfo(state: state, height: MOVIE_HEIGHT, width: MOVIE_WIDTH);
-              // if (state is MoviesLoading) {
-              //   return HomepageSkeletonLoading(height: 290, width: 220);
-              // }
-              // if (state is MoviesLoaded &&
-              //     state.movieModel.results.isNotEmpty) {
-              //   return MovieList(searchModel: state.movieModel);
-              // }
-              // return Text(state is MoviesError ? state.errorMessage : "");
+              if (state is MoviesLoading) {
+                return HomepageSkeletonLoading(height: 290, width: 220);
+              }
+              if (state is MoviesLoaded &&
+                  state.movieModel.results.isNotEmpty) {
+                return MovieList(searchModel: state.movieModel);
+              }
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
-          SizedBox(
-            height: 8,
-          ),
+          
           Text("Comedy", style: Theme.of(context).textTheme.headline3),
           BlocBuilder<ComedyCubit, MoviesState>(
             bloc: comedyCubit,
             builder: (context, state) {
               return getMovieCategoriesInfo(state: state, height: CATEGORIES_HEIGHT, width: CATEGORIES_WIDTH);
-              // if (state is MoviesLoading) {
-              //   return CircularProgressIndicator();
-              // }
-              // if (state is MoviesLoaded &&
-              //     state.movieModel.results.isNotEmpty) {
-              //   return MovieCategoryList(searchModel: state.movieModel);
-              // }
-              // return Text(state is MoviesError ? state.errorMessage : "");
+              if (state is MoviesLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is MoviesLoaded &&
+                  state.movieModel.results.isNotEmpty) {
+                return MovieCategoryList(searchModel: state.movieModel);
+              }
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
           Text("Action", style: Theme.of(context).textTheme.headline3),
@@ -131,14 +130,14 @@ class _HomePageState extends State<HomePage> {
             bloc: actionCubit,
             builder: (context, state) {
               return getMovieCategoriesInfo(state: state, height: CATEGORIES_HEIGHT, width: CATEGORIES_WIDTH);
-              // if (state is MoviesLoading) {
-              //   return CircularProgressIndicator();
-              // }
-              // if (state is MoviesLoaded &&
-              //     state.movieModel.results.isNotEmpty) {
-              //   return MovieCategoryList(searchModel: state.movieModel);
-              // }
-              // return Text(state is MoviesError ? state.errorMessage : "");
+              if (state is MoviesLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is MoviesLoaded &&
+                  state.movieModel.results.isNotEmpty) {
+                return MovieCategoryList(searchModel: state.movieModel);
+              }
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
           Text("Fantasy", style: Theme.of(context).textTheme.headline3),
@@ -146,14 +145,14 @@ class _HomePageState extends State<HomePage> {
             bloc: fantasyCubit,
             builder: (context, state) {
               return getMovieCategoriesInfo(state: state, height: CATEGORIES_HEIGHT, width: CATEGORIES_WIDTH);
-              // if (state is MoviesLoading) {
-              //   return CircularProgressIndicator();
-              // }
-              // if (state is MoviesLoaded &&
-              //     state.movieModel.results.isNotEmpty) {
-              //   return MovieCategoryList(searchModel: state.movieModel);
-              // }
-              // return Text(state is MoviesError ? state.errorMessage : "");
+              if (state is MoviesLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is MoviesLoaded &&
+                  state.movieModel.results.isNotEmpty) {
+                return MovieCategoryList(searchModel: state.movieModel);
+              }
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
           Text("Horror", style: Theme.of(context).textTheme.headline3),
@@ -161,14 +160,14 @@ class _HomePageState extends State<HomePage> {
             bloc: horrorCubit,
             builder: (context, state) {
               return getMovieCategoriesInfo(state: state, height: CATEGORIES_HEIGHT, width: CATEGORIES_WIDTH);
-              // if (state is MoviesLoading) {
-              //   return CircularProgressIndicator();
-              // }
-              // if (state is MoviesLoaded &&
-              //     state.movieModel.results.isNotEmpty) {
-              //   return MovieCategoryList(searchModel: state.movieModel);
-              // }
-              // return Text(state is MoviesError ? state.errorMessage : "");
+              if (state is MoviesLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is MoviesLoaded &&
+                  state.movieModel.results.isNotEmpty) {
+                return MovieCategoryList(searchModel: state.movieModel);
+              }
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
           Text("Crime", style: Theme.of(context).textTheme.headline3),
@@ -176,14 +175,14 @@ class _HomePageState extends State<HomePage> {
             bloc: crimeCubit,
             builder: (context, state) {
               return getMovieCategoriesInfo(state: state, height: CATEGORIES_HEIGHT, width: CATEGORIES_WIDTH);
-              // if (state is MoviesLoading) {
-              //   return CircularProgressIndicator();
-              // }
-              // if (state is MoviesLoaded &&
-              //     state.movieModel.results.isNotEmpty) {
-              //   return MovieCategoryList(searchModel: state.movieModel);
-              // }
-              // return Text(state is MoviesError ? state.errorMessage : "");
+              if (state is MoviesLoading) {
+                return CircularProgressIndicator();
+              }
+              if (state is MoviesLoaded &&
+                  state.movieModel.results.isNotEmpty) {
+                return MovieCategoryList(searchModel: state.movieModel);
+              }
+              return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
         ],

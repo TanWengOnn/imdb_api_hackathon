@@ -7,15 +7,18 @@ class MovieList extends StatelessWidget {
   MovieList({Key? key, required this.searchModel}) : super(key: key);
 
   final MovieModel searchModel;
+  static const double TOP10_POSTER_HEIGHT = 280;
+  static const double TOP10_POSTER_WIDTH = TOP10_POSTER_HEIGHT / 4.0 * 3;
+  static const double HEIGHT = 340;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: HEIGHT,
       // child: ListView.builder(
       child: CarouselSlider.builder(
         options: CarouselOptions(
-            height: 332,
+            height: HEIGHT,
             scrollDirection: Axis.horizontal,
             viewportFraction: 1,
             autoPlay: true,
@@ -50,21 +53,28 @@ class MovieList extends StatelessWidget {
             child: Card(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               shape:
-                  const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-              elevation: 2,
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+              elevation: 0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image.network(
-                    searchModel.results.elementAt(index).image,
-                    fit: BoxFit.fill,
-                    height: 290,
-                    width: 220,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Image.network(
+                      searchModel.results.elementAt(index).image,
+                      fit: BoxFit.fill,
+                      height: TOP10_POSTER_HEIGHT,
+                      width: TOP10_POSTER_WIDTH,
+                    ),
                   ),
                   Text(
-                      '${searchModel.results.elementAt(index).title} ${searchModel.results.elementAt(index).description}'),
+                      '${searchModel.results.elementAt(index).title} '
+                      '${searchModel.results.elementAt(index).description}',
+                      style: Theme.of(context).textTheme.subtitle1),
                   Text(
-                      '${searchModel.results.elementAt(index).genres} • ${searchModel.results.elementAt(index).runtimeStr}'),
+                      '${searchModel.results.elementAt(index).genres} '
+                      '• ${searchModel.results.elementAt(index).runtimeStr}',
+                       ),
                 ],
               ),
             ),

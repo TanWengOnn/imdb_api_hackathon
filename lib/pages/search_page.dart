@@ -54,10 +54,11 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Search", style: Theme.of(context).textTheme.headline2),
+        title: Text("Search", style: Theme.of(context).textTheme.headline1),
         backgroundColor: Colors.white,
+        elevation: 1,
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Color(0xFFE53935),
         ),
       ),
       body: ListView(
@@ -101,7 +102,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           SizedBox(height: 10),
           Container(
-            margin: EdgeInsets.only(left: 10),
+            
             child: Text('Select Genres:',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
           ),
@@ -170,9 +171,8 @@ class _SearchPageState extends State<SearchPage> {
                   },
                   child: Row(
                     children: [
-                      Text("Apply Selection",
+                      Text("Apply Selection ",
                           style: TextStyle(color: Colors.black)),
-                      SizedBox(width: 5),
                       Icon(
                         Icons.done,
                         color: Colors.green,
@@ -191,9 +191,8 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Row(
                   children: [
-                    Text("Reset Selection",
+                    Text("Reset Selection ",
                         style: TextStyle(color: Colors.black)),
-                    SizedBox(width: 5),
                     Icon(Icons.refresh, color: Colors.blue),
                   ],
                 ),
