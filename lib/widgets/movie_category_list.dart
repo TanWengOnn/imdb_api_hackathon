@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
-import 'package:imdb_api_hackathon/pages/homepage.dart';
 
-class MovieList extends StatelessWidget {
-  MovieList({Key? key, required this.searchModel}) : super(key: key);
+
+class MovieCategoryList extends StatelessWidget {
+  const MovieCategoryList({Key? key, required this.searchModel})
+      : super(key: key);
 
   final MovieModel searchModel;
-  
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 350,
-    
+          height: 200,
           child: ListView.builder(
+        
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemCount: searchModel.results.length,
             physics: ScrollPhysics(),
-          
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
@@ -49,8 +48,8 @@ class MovieList extends StatelessWidget {
                 },
                 child: Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  shape:
-                      RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   elevation: 2,
                   child: Container(
                     child: Column(
@@ -59,13 +58,21 @@ class MovieList extends StatelessWidget {
                         Image.network(
                           searchModel.results.elementAt(index).image,
                           fit: BoxFit.fill,
-                          height: 290,
-                          width: 220,
+                          height: 160,
+                          width: 120,
                         ),
-                        Text(
-                            '${searchModel.results.elementAt(index).title} ${searchModel.results.elementAt(index).description}'),
-                        Text(
-                            '${searchModel.results.elementAt(index).genres} • ${searchModel.results.elementAt(index).runtimeStr}'),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                              size: 20.0,
+                            ),
+                            Text(searchModel.results
+                                .elementAt(index)
+                                .imDbRating),
+                          ],
+                        )
                       ],
                     ),
                   ),

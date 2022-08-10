@@ -41,22 +41,33 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Open Sans',
           textTheme: const TextTheme(
             headline1: TextStyle(
-                fontSize: 30,
-                color: Colors.black,
+                fontSize: 25,
+                color: Colors.white,
                 decoration: TextDecoration.none,
-                fontWeight: FontWeight.w400),
+                fontWeight: FontWeight.bold),
             headline2: TextStyle(
                 fontSize: 25,
-                color: Colors.black,
-                decoration: TextDecoration.none),
+                color: Colors.deepOrange,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
             headline3: TextStyle(
                 fontSize: 20,
                 color: Colors.black,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             headline4: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline5: TextStyle(
                 fontSize: 15,
                 color: Colors.black,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline6: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
           ),
