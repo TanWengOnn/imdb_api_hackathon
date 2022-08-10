@@ -8,6 +8,8 @@ import 'package:imdb_api_hackathon/states/horror_cubit.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/home_genre_button.dart';
 import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
+import 'package:imdb_api_hackathon/widgets/movie_category_list.dart';
+import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 
 class HomePage extends StatefulWidget {
@@ -35,26 +37,39 @@ class _HomePageState extends State<HomePage> {
     crimeCubit = BlocProvider.of<CrimeCubit>(context)..fetchCrime(genres: 'Crime', count: '10');
   }
 
-
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
+  
+    // void genresButton({String? genres, String? moviemeter}) {
+    //   cubit.fetchHomepage(genres: genres, moviemeter: moviemeter, count: "10");
+    // }
+    
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movies"),
+        title: Text("Movies", style: Theme.of(context).textTheme.headline2),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/search");
+            },
+            icon: const Icon(
+              Icons.search,
+              size: 30,
+            ),
+            color: Colors.black,
+          )
+        ],
       ),
       body: ListView(
+        padding: EdgeInsets.all(10),
         scrollDirection: Axis.vertical,
+        // shrinkWrap: true,
         children: [
-          Center(
-            child: ElevatedButton.icon(
-              label: Text("Search"),
-              onPressed: () {
-                Navigator.pushNamed(context, "/search");
-              },
-              icon: Icon(Icons.search),
-            ),
-          ),
-          Text('Top 10 Movies/Series'),
+          
+          Text('Top 10 Movies/Series',
+              style: Theme.of(context).textTheme.headline3),
           BlocBuilder<HomepageCubit, MoviesState>(
             bloc: homepageCubit,
             builder: (context, state) {
@@ -68,7 +83,10 @@ class _HomePageState extends State<HomePage> {
               return Text(state is MoviesError ? state.errorMessage : "");
             },
           ),
-          Text("Comedy"),
+          SizedBox(
+            height: 8,
+          ),
+          Text("Comedy", style: Theme.of(context).textTheme.headline3),
           BlocBuilder<ComedyCubit, MoviesState>(
             bloc: comedyCubit,
             builder: (context, state) {
@@ -77,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               }
               if (state is MoviesLoaded &&
                   state.movieModel.results.isNotEmpty) {
-                return MovieList(searchModel: state.movieModel);
+                return MovieCategoryList(searchModel: state.movieModel);
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },
@@ -91,7 +109,7 @@ class _HomePageState extends State<HomePage> {
               }
               if (state is MoviesLoaded &&
                   state.movieModel.results.isNotEmpty) {
-                return MovieList(searchModel: state.movieModel);
+                return MovieCategoryList(searchModel: state.movieModel);
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },
@@ -105,7 +123,7 @@ class _HomePageState extends State<HomePage> {
               }
               if (state is MoviesLoaded &&
                   state.movieModel.results.isNotEmpty) {
-                return MovieList(searchModel: state.movieModel);
+                return MovieCategoryList(searchModel: state.movieModel);
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },
@@ -119,7 +137,7 @@ class _HomePageState extends State<HomePage> {
               }
               if (state is MoviesLoaded &&
                   state.movieModel.results.isNotEmpty) {
-                return MovieList(searchModel: state.movieModel);
+                return MovieCategoryList(searchModel: state.movieModel);
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },
@@ -133,7 +151,7 @@ class _HomePageState extends State<HomePage> {
               }
               if (state is MoviesLoaded &&
                   state.movieModel.results.isNotEmpty) {
-                return MovieList(searchModel: state.movieModel);
+                return MovieCategoryList(searchModel: state.movieModel);
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },

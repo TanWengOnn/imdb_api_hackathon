@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
-import 'package:imdb_api_hackathon/services/search_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
+import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
+import 'package:imdb_api_hackathon/widgets/search_movie_list.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -30,6 +29,9 @@ class _SearchPageState extends State<SearchPage> {
     super.dispose();
   }
 
+  late TextEditingController _controller;
+  List<bool> _isTagSelected = [false, false, false, false, false, false];
+
   List genresList = [
     "Action",
     "Comedy",
@@ -49,74 +51,150 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text("Search"),
+        title: Text("Search", style: Theme.of(context).textTheme.headline2),
+        backgroundColor: Colors.blue,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        elevation: 0,
       ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          TextField(
-            controller: titleController,
-          ),
-          Text(
-            movieGenres == '' ? '' : "Genres: $movieGenres",
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                if (titleController.text.isNotEmpty || movieGenres != '') {
-                  setState(() {
-                    searchButton(
-                        title: titleController.text, genres: movieGenres);
-                  });
-                }
-              },
-              child: Text("Search"),
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colors.black),
+              ),
+            ),
+            padding: EdgeInsets.only(bottom: 10),
+            margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
+            child: Row(
+              children: [
+                TextField(
+                  textInputAction: TextInputAction.done,
+                  onSubmitted: (value) {
+                    if (titleController.text.isNotEmpty || movieGenres != '') {
+                      setState(() {
+                        searchButton(
+                            title: titleController.text, genres: movieGenres);
+                      });
+                    }
+                  },
+                  controller: titleController,
+                  decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    constraints: BoxConstraints(maxWidth: 380),
+                    prefixIcon: Icon(Icons.search),
+                    hintText: "Search Movies/Series",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                  ),
+                ),
+                SizedBox(width: 10),
+              ],
             ),
           ),
+          SizedBox(height: 10),
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Text('Select Genres:',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          ),
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 30,
+                height: 40,
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: genresList.length,
+                  padding: EdgeInsets.all(2),
                   itemBuilder: (context, index) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (!movieGenres!.contains(genresList[index])) {
-                            movieGenres =
-                                movieGenres! + ',' + genresList[index];
-                          }
-                        });
-                      },
-                      child: Text(genresList[index]),
+                    return Row(
+                      children: [
+                        ElevatedButton(
+                          onPressed: _isTagSelected[index]
+                              ? null
+                              : () {
+                                  setState(() {
+                                    if (!movieGenres!
+                                        .contains(genresList[index])) {
+                                      movieGenres = movieGenres! +
+                                          "," +
+                                          genresList[index];
+                                    }
+                                    if (movieGenres?.contains(
+                                            "${genresList[index]}") ==
+                                        true) {
+                                      _isTagSelected[index] = true;
+                                    }
+                                  });
+                                },
+                          child: Text(genresList[index]),
+                          style: ElevatedButton.styleFrom(
+                              shape: StadiumBorder(),
+                              primary: Colors.indigo[600]),
+                        ),
+                        SizedBox(width: 5),
+                      ],
                     );
                   },
                 ),
               ),
-
-              // Use this in HomePage
-              // GenresButton(label: "Comedy", searchButton: () {
-              //   searchButton(title: titleController.text, genres: "comedy");
-              // }),
-              // GenresButton(label: "Action", searchButton: () {
-              //   searchButton(title: titleController.text, genres: "action");
-              // }),
             ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                movieGenres = '';
-              });
-            },
-            child: Text("Clear"),
+          Row(
+            children: [
+              SizedBox(width: 5),
+              ElevatedButton(
+                  onPressed: () {
+                    if (titleController.text.isNotEmpty || movieGenres != '') {
+                      setState(() {
+                        searchButton(
+                            title: titleController.text, genres: movieGenres);
+                      });
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      Text("Apply Selection"),
+                      Icon(Icons.done),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.indigoAccent[700])),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    movieGenres = '';
+                    _isTagSelected =
+                        _isTagSelected.map<bool>((v) => false).toList();
+                  });
+                },
+                child: Row(
+                  children: [
+                    Text("Reset Selection"),
+                    Icon(Icons.refresh),
+                  ],
+                ),
+                style:
+                    ElevatedButton.styleFrom(primary: Colors.indigoAccent[700]),
+              ),
+            ],
           ),
+          Text(
+            movieGenres == '' ? '' : "Genre(s) Selected: $movieGenres",
+            style: TextStyle(color: Colors.grey),
+          ),
+          SizedBox(height: 10),
           BlocBuilder<SearchCubit, MoviesState>(
             bloc: cubit,
             builder: (context, state) {
@@ -126,7 +204,7 @@ class _SearchPageState extends State<SearchPage> {
                   return CircularProgressIndicator();
                 }
                 if (state is MoviesLoaded) {
-                  return MovieList(searchModel: state.movieModel);
+                  return SearchMovieList(searchModel: state.movieModel);
                 } else {
                   if (state is MoviesError) {
                     print(state.errorMessage);

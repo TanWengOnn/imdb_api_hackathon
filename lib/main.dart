@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
 import 'package:imdb_api_hackathon/pages/search_page.dart';
 import 'package:imdb_api_hackathon/states/action_cubit.dart';
@@ -56,7 +55,46 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          //brightness: Brightness.dark,
+          primaryColor: Colors.white,
+          fontFamily: 'Open Sans',
+          textTheme: const TextTheme(
+            headline1: TextStyle(
+                fontSize: 25,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline2: TextStyle(
+                fontSize: 25,
+                color: Colors.deepOrange,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline3: TextStyle(
+                fontSize: 20,
+                color: Colors.red,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline4: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline5: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            headline6: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            subtitle1: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+          ),
         ),
         initialRoute: '/',
         onGenerateRoute: (settings) {
@@ -67,7 +105,8 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => SearchPage());
             case '/details-page':
               DetailsPage data = settings.arguments as DetailsPage;
-              return MaterialPageRoute(builder: (_) => DetailsPage(movieDetails: data.movieDetails));
+              return MaterialPageRoute(
+                  builder: (_) => DetailsPage(movieDetails: data.movieDetails));
           }
         });
   }

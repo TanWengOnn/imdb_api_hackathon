@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:imdb_api_hackathon/models/movie_model.dart';
@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key, required this.movieDetails}) : super(key: key);
-
   final Map movieDetails;
 
   @override
@@ -26,6 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
     trailerCubit = BlocProvider.of<TrailerCubit>(context)
       ..fetchTrailer(movieID: widget.movieDetails['id']);
+      print(widget.movieDetails['id']);
   }
 
 // reference: https://github.com/Bytx-youtube/ytplayer/blob/main/lib/mainscreen.dart
@@ -54,63 +54,133 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movie Details"),
+        title:
+            Text("Movie Details", style: Theme.of(context).textTheme.headline2),
+        backgroundColor: Colors.white,
+        elevation: 5,
+        iconTheme: IconThemeData(
+          color: Colors.orangeAccent,
+        ),
       ),
-      body: Column(
+      body: ListView(
         children: [
-          BlocBuilder<TrailerCubit, TrailerState>(
-            bloc: trailerCubit,
-            builder: (context, state) {
-              if (state is TrailerLoading) {
-                return CircularProgressIndicator();
-              }
+          Stack(
+            //fit: StackFit.expand,
+            children: [
+              Image.network(widget.movieDetails['image'],
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height + 50),
+              BackdropFilter(
+                filter: new ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                child: new Container(
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    BlocBuilder<TrailerCubit, TrailerState>(
+                      bloc: trailerCubit,
+                      builder: (context, state) {
+                        if (state is TrailerLoading) {
+                          return CircularProgressIndicator();
+                        }
 
-              if (state is TrailerLoaded) {
-                return ElevatedButton(
-                  onPressed: () {
-                    youtube(state.trailerModel.videoId);
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return youtube(state.trailerModel.videoId);
+                        if (state is TrailerLoaded) {
+                          return ElevatedButton(
+                            onPressed: () {
+                              youtube(state.trailerModel.videoId);
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return youtube(state.trailerModel.videoId);
+                                },
+                              );
+                            },
+                            child: Text("Trailer"),
+                          );
+                        }
+
+                        return Text(state is TrailerError ? state.errorMessage : "");
                       },
-                    );
-                  },
-                  child: Text("Trailer"),
-                );
-              }
+                    ),
+                    Image.network(
+                      widget.movieDetails['image'],
+                      height: 420,
+                      width: 380,
+                    ),
+                    Text(
+                        widget.movieDetails['genres'] == ''
+                            ? ""
+                            : "${widget.movieDetails['genres']}",
+                        style: Theme.of(context).textTheme.headline6),
+                    Container(
+                      decoration:
+                          BoxDecoration(color: Colors.black.withOpacity(0.5)),
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                    widget.movieDetails['title'] == ''
+                                        ? "Unknown"
+                                        : "${widget.movieDetails['title']}",
+                                    style:
+                                        Theme.of(context).textTheme.headline1),
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 25.0,
+                              ),
+                              Text(
+                                  widget.movieDetails['imDbRating'] == ''
+                                      ? "N/A"
+                                      : "${widget.movieDetails['imDbRating']}/10",
+                                  style: Theme.of(context).textTheme.headline6),
+                            ],
+                          ),
+                          //Text('${movieDetails['description'].toString().substring(1,5)} • ${movieDetails['contentRating']} • ${movieDetails['runtimeStr']}',
+                          Text(
+                              '${widget.movieDetails['description'] == '' ? 'N/A' : widget.movieDetails['description']} • '
+                              '${widget.movieDetails['contentRating'] == '' ? 'N/A' : widget.movieDetails['contentRating']} • '
+                              '${widget.movieDetails['runtimeStr'] == '' ? 'N/A' : widget.movieDetails['runtimeStr']} • ',
+                              style: Theme.of(context).textTheme.headline6),
 
-              return Text(state is TrailerError ? state.errorMessage : "");
-            },
-          ),
-          Image.network("${widget.movieDetails['image']}", height: 20),
-          Text(widget.movieDetails['title'] == ''
-              ? "Stars: No info"
-              : "Title: ${widget.movieDetails['title']}"),
-          Text(widget.movieDetails['plot'] == ''
-              ? "Stars: No info"
-              : "Plot: ${widget.movieDetails['plot']}"),
-          Text(widget.movieDetails['description'] == ''
-              ? "Stars: No info"
-              : "Description: ${widget.movieDetails['description']}"),
-          Text(widget.movieDetails['contentRating'] == ''
-              ? "Stars: No info"
-              : "Content Rating: ${widget.movieDetails['contentRating']}"),
-          Text(widget.movieDetails['runtimeStr'] == ''
-              ? "Stars: No info"
-              : "Run Time: ${widget.movieDetails['runtimeStr']}"),
-          Text(widget.movieDetails['imDbRating'] == ''
-              ? "Stars: No info"
-              : "IMDB Rating: ${widget.movieDetails['imDbRating']}"),
-          Text(widget.movieDetails['imDbRatingVotes'] == ''
-              ? "Stars: No info"
-              : "IMDB Rating Votes: ${widget.movieDetails['imDbRatingVotes']}"),
-          Text(widget.movieDetails['stars'] == ''
-              ? "Stars: No info"
-              : "Stars: ${widget.movieDetails['stars']}"),
-          Text(widget.movieDetails['genres'] == ''
-              ? "Stars: No info"
-              : "Genres: ${widget.movieDetails['genres']}"),
+                          SizedBox(height: 10),
+                          Text(
+                              widget.movieDetails['plot'] == ''
+                                  ? "No info"
+                                  : "${widget.movieDetails['plot']}",
+                              style: Theme.of(context).textTheme.headline6),
+                          const Divider(
+                            height: 20,
+                            thickness: 1,
+                            indent: 0,
+                            endIndent: 0,
+                            color: Colors.white,
+                          ),
+                          Text('Cast',
+                              style: Theme.of(context).textTheme.headline4),
+                          SizedBox(height: 10),
+                          Text(
+                              widget.movieDetails['stars'] == ''
+                                  ? "Unknown"
+                                  : "${widget.movieDetails['stars']}",
+                              style: Theme.of(context).textTheme.headline6),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
