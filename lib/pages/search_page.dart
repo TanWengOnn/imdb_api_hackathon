@@ -5,6 +5,7 @@ import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 import 'package:imdb_api_hackathon/widgets/search_movie_list.dart';
+import 'package:imdb_api_hackathon/widgets/skeleton_search_loading.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -51,7 +52,7 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Search", style: Theme.of(context).textTheme.headline2),
         backgroundColor: Colors.blue,
@@ -201,7 +202,7 @@ class _SearchPageState extends State<SearchPage> {
               if ((titleController.text.isNotEmpty || movieGenres != '') &&
                   state is! MoviesInitial) {
                 if (state is MoviesLoading) {
-                  return CircularProgressIndicator();
+                  return SearchSkeletonLoading(height: 100, width: 80);
                 }
                 if (state is MoviesLoaded) {
                   return SearchMovieList(searchModel: state.movieModel);

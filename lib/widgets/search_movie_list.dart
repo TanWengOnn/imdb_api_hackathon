@@ -24,6 +24,7 @@ class SearchMovieList extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(context, "/details-page",
                       arguments: DetailsPage(movieDetails: {
+                        'id': searchModel.results.elementAt(index).id,
                         'title': searchModel.results.elementAt(index).title,
                         'image': searchModel.results.elementAt(index).image,
                         'plot': searchModel.results.elementAt(index).plot,
