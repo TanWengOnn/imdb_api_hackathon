@@ -59,19 +59,21 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.white,
           fontFamily: 'Open Sans',
           textTheme: const TextTheme(
+            //App title
             headline1: TextStyle(
                 fontSize: 25,
-                color: Colors.white,
+                color: Color(0xFFE53935),
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             headline2: TextStyle(
                 fontSize: 25,
-                color: Colors.deepOrange,
+                color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
+            //sub title
             headline3: TextStyle(
                 fontSize: 20,
-                color: Colors.red,
+                color: Color(0xFFE53935),
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             headline4: TextStyle(
@@ -80,20 +82,28 @@ class MyApp extends StatelessWidget {
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             headline5: TextStyle(
-                fontSize: 15,
+                fontSize: 20,
                 color: Colors.black,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
+            //paragraph
             headline6: TextStyle(
                 fontSize: 15,
                 color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             subtitle1: TextStyle(
-                fontSize: 20,
+                fontSize: 15,
                 color: Colors.black,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
+            //paragraph2
+            subtitle2: TextStyle(
+                fontSize: 10,
+                color: Colors.white,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
+            
           ),
         ),
         initialRoute: '/',
