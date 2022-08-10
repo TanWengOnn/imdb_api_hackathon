@@ -3,7 +3,7 @@ import 'package:imdb_api_hackathon/models/trailer_model.dart';
 
 class TrailerService {
   Future<TrailerModel> fetchTrailerInformation({String? movieId}) async {
-    const String apiKey = "k_vaew91xr";
+    const String apiKey = "k_fawnvhz5";
     // k_2b0tzkax
     // k_mvigl067
     // k_8dgpz1mi
@@ -11,6 +11,9 @@ class TrailerService {
     // k_l6oi3cob
     // k_s4hmxd4c
     // k_vaew91xr
+
+    // k_fawnvhz5
+    // k_rkos0u75
 
     final Uri url = Uri(
       scheme: 'https',

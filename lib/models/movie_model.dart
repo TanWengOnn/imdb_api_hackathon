@@ -75,20 +75,20 @@ class Result {
   factory Result.fromMap(Map<String, dynamic> json) => Result(
         id: json["id"],
         image: json["image"],
-        title: json["title"],
+        title: json["title"]??'Unknown',
         description: json["description"],
-        runtimeStr: json["runtimeStr"] ?? '',
-        genres: json["genres"] ?? '',
+        runtimeStr: json["runtimeStr"] ?? 'N/A',
+        genres: json["genres"] ?? 'N/A',
         genreList: json["genreList"] == null
             ? []
             : List<GenreList>.from(
                 json["genreList"].map((x) => GenreList.fromMap(x))),
-        contentRating: json["contentRating"] ?? '',
-        imDbRating: json["imDbRating"] ?? '',
-        imDbRatingVotes: json["imDbRatingVotes"] ?? '',
-        metacriticRating: json["metacriticRating"] ?? '',
-        plot: json["plot"] ?? '',
-        stars: json["stars"] ?? '',
+        contentRating: json["contentRating"] ?? 'N/A',
+        imDbRating: json["imDbRating"] ?? 'N/A',
+        imDbRatingVotes: json["imDbRatingVotes"] ?? 'N/A',
+        metacriticRating: json["metacriticRating"] ?? 'N/A',
+        plot: json["plot"] ?? 'No Information',
+        stars: json["stars"] ?? 'Unknown',
         starList: json["starList"] == null
             ? []
             : List<StarList>.from(

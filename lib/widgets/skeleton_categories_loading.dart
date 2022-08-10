@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
-class HomepageSkeletonLoading extends StatelessWidget {
-  HomepageSkeletonLoading({required this.height, required this.width});
+class CategoriesSkeletonLoading extends StatelessWidget {
+  CategoriesSkeletonLoading({required this.height, required this.width});
 
   double height;
   double width;
@@ -23,6 +23,7 @@ class HomepageSkeletonLoading extends StatelessWidget {
                         width: width,
                         decoration: BoxDecoration(
                           color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(15),
                         ),
                       );
                 },
