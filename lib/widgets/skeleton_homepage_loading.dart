@@ -31,3 +31,5 @@ class HomepageSkeletonLoading extends StatelessWidget {
           );
   }
 }
+
+//https://www.youtube.com/watch?v=SQnmuulYWPU
