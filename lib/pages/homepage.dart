@@ -4,15 +4,20 @@ import 'package:imdb_api_hackathon/states/action_cubit.dart';
 import 'package:imdb_api_hackathon/states/comedy_cubit.dart';
 import 'package:imdb_api_hackathon/states/crime_cubit.dart';
 import 'package:imdb_api_hackathon/states/fantasy_cubit.dart';
-import 'package:imdb_api_hackathon/states/horror_cubit.dart';
-import 'package:imdb_api_hackathon/states/movie_state.dart';
-import 'package:imdb_api_hackathon/widgets/home_genre_button.dart';
 import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
+<<<<<<< HEAD
 import 'package:imdb_api_hackathon/widgets/movie_category_list.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_homepage_loading.dart';
 
+=======
+import 'package:imdb_api_hackathon/states/horror_cubit.dart';
+
+import '../states/movie_state.dart';
+import '../widgets/movie_category_list.dart';
+import '../widgets/movie_lists.dart';
+>>>>>>> carousel
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -59,17 +64,30 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    homepageCubit = BlocProvider.of<HomepageCubit>(context)..fetchHomepage(moviemeter: '1,10');
-    comedyCubit = BlocProvider.of<ComedyCubit>(context)..fetchComedy(genres: 'Comedy', count: '10');
-    actionCubit = BlocProvider.of<ActionCubit>(context)..fetchAction(genres: 'Action', count: '10');
-    fantasyCubit = BlocProvider.of<FantasyCubit>(context)..fetchFantasy(genres: 'Fantasy', count: '10');
-    horrorCubit = BlocProvider.of<HorrorCubit>(context)..fetchHorror(genres: 'Horror', count: '10');
-    crimeCubit = BlocProvider.of<CrimeCubit>(context)..fetchCrime(genres: 'Crime', count: '10');
+    homepageCubit = BlocProvider.of<HomepageCubit>(context)
+      ..fetchHomepage(moviemeter: '1,10');
+    comedyCubit = BlocProvider.of<ComedyCubit>(context)
+      ..fetchComedy(genres: 'Comedy', count: '10');
+    actionCubit = BlocProvider.of<ActionCubit>(context)
+      ..fetchAction(genres: 'Action', count: '10');
+    fantasyCubit = BlocProvider.of<FantasyCubit>(context)
+      ..fetchFantasy(genres: 'Fantasy', count: '10');
+    horrorCubit = BlocProvider.of<HorrorCubit>(context)
+      ..fetchHorror(genres: 'Horror', count: '10');
+    crimeCubit = BlocProvider.of<CrimeCubit>(context)
+      ..fetchCrime(genres: 'Crime', count: '10');
   }
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     
+=======
+    // void genresButton({String? genres, String? moviemeter}) {
+    //   cubit.fetchHomepage(genres: genres, moviemeter: moviemeter, count: "10");
+    // }
+
+>>>>>>> carousel
     return Scaffold(
       appBar: AppBar(
         title: Text("Movies", style: Theme.of(context).textTheme.headline2),
@@ -93,7 +111,6 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.vertical,
         // shrinkWrap: true,
         children: [
-          
           Text('Top 10 Movies/Series',
               style: Theme.of(context).textTheme.headline3),
           BlocBuilder<HomepageCubit, MoviesState>(

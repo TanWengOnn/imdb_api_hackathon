@@ -1,7 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
-
 
 class MovieCategoryList extends StatelessWidget {
   const MovieCategoryList({Key? key, required this.searchModel})
@@ -15,13 +15,15 @@ class MovieCategoryList extends StatelessWidget {
       children: [
         Container(
           height: 200,
-          child: ListView.builder(
-        
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
+          width: 1500,
+          child: CarouselSlider.builder(
+            options: CarouselOptions(
+              scrollPhysics: ClampingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              viewportFraction: 0.4,
+            ),
             itemCount: searchModel.results.length,
-            physics: ScrollPhysics(),
-            itemBuilder: (context, index) {
+            itemBuilder: (context, index, realIndex) {
               return GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, "/details-page",

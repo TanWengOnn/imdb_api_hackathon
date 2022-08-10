@@ -1,9 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
-import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 import 'package:imdb_api_hackathon/widgets/search_movie_list.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_search_loading.dart';
 
@@ -39,7 +39,7 @@ class _SearchPageState extends State<SearchPage> {
     "Family",
     "Crime",
     "Fantasy",
-    "Horror"
+    "Horror",
   ];
   String? movieGenres = '';
 
@@ -55,13 +55,13 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Search", style: Theme.of(context).textTheme.headline2),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        elevation: 0,
       ),
       body: ListView(
+        padding: EdgeInsets.all(20),
         scrollDirection: Axis.vertical,
         children: [
           Container(
@@ -71,7 +71,6 @@ class _SearchPageState extends State<SearchPage> {
               ),
             ),
             padding: EdgeInsets.only(bottom: 10),
-            margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
             child: Row(
               children: [
                 TextField(
@@ -87,15 +86,16 @@ class _SearchPageState extends State<SearchPage> {
                   controller: titleController,
                   decoration: const InputDecoration(
                     filled: true,
-                    fillColor: Colors.white,
-                    constraints: BoxConstraints(maxWidth: 380),
+                    fillColor: CupertinoColors.systemGrey6,
+                    constraints: BoxConstraints(maxWidth: 371, maxHeight: 50),
                     prefixIcon: Icon(Icons.search),
                     hintText: "Search Movies/Series",
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                 ),
-                SizedBox(width: 10),
               ],
             ),
           ),
@@ -103,57 +103,62 @@ class _SearchPageState extends State<SearchPage> {
           Container(
             margin: EdgeInsets.only(left: 10),
             child: Text('Select Genres:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
           ),
-          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 40,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: genresList.length,
-                  padding: EdgeInsets.all(2),
-                  itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: _isTagSelected[index]
-                              ? null
-                              : () {
-                                  setState(() {
-                                    if (!movieGenres!
-                                        .contains(genresList[index])) {
-                                      movieGenres = movieGenres! +
-                                          "," +
-                                          genresList[index];
-                                    }
-                                    if (movieGenres?.contains(
-                                            "${genresList[index]}") ==
-                                        true) {
-                                      _isTagSelected[index] = true;
-                                    }
-                                  });
-                                },
-                          child: Text(genresList[index]),
-                          style: ElevatedButton.styleFrom(
-                              shape: StadiumBorder(),
-                              primary: Colors.indigo[600]),
-                        ),
-                        SizedBox(width: 5),
-                      ],
-                    );
-                  },
+              Flexible(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 60,
+                  child: CarouselSlider.builder(
+                    options: CarouselOptions(
+                      scrollDirection: Axis.horizontal,
+                      viewportFraction: 0.27,
+                    ),
+                    itemCount: genresList.length,
+                    itemBuilder: (context, index, realIndex) {
+                      return Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: _isTagSelected[index]
+                                ? null
+                                : () {
+                                    setState(() {
+                                      if (!movieGenres!
+                                          .contains(genresList[index])) {
+                                        movieGenres = movieGenres! +
+                                            "," +
+                                            genresList[index];
+                                      }
+                                      if (movieGenres?.contains(
+                                              "${genresList[index]}") ==
+                                          true) {
+                                        _isTagSelected[index] = true;
+                                      }
+                                    });
+                                  },
+                            child: Text(
+                              genresList[index],
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 12),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                shape: StadiumBorder(),
+                                primary: Colors.white,
+                                fixedSize: Size(81, 25)),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
           ),
           Row(
             children: [
-              SizedBox(width: 5),
               ElevatedButton(
                   onPressed: () {
                     if (titleController.text.isNotEmpty || movieGenres != '') {
@@ -165,12 +170,16 @@ class _SearchPageState extends State<SearchPage> {
                   },
                   child: Row(
                     children: [
-                      Text("Apply Selection"),
-                      Icon(Icons.done),
+                      Text("Apply Selection",
+                          style: TextStyle(color: Colors.black)),
+                      SizedBox(width: 5),
+                      Icon(
+                        Icons.done,
+                        color: Colors.green,
+                      ),
                     ],
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.indigoAccent[700])),
+                  style: ElevatedButton.styleFrom(primary: Colors.white)),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
@@ -182,15 +191,17 @@ class _SearchPageState extends State<SearchPage> {
                 },
                 child: Row(
                   children: [
-                    Text("Reset Selection"),
-                    Icon(Icons.refresh),
+                    Text("Reset Selection",
+                        style: TextStyle(color: Colors.black)),
+                    SizedBox(width: 5),
+                    Icon(Icons.refresh, color: Colors.blue),
                   ],
                 ),
-                style:
-                    ElevatedButton.styleFrom(primary: Colors.indigoAccent[700]),
+                style: ElevatedButton.styleFrom(primary: Colors.white),
               ),
             ],
           ),
+          SizedBox(height: 10),
           Text(
             movieGenres == '' ? '' : "Genre(s) Selected: $movieGenres",
             style: TextStyle(color: Colors.grey),
