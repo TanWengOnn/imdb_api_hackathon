@@ -22,7 +22,7 @@ class HomepageSkeletonLoading extends StatelessWidget {
                         height: height,
                         width: width,
                         decoration: BoxDecoration(
-                          color: Colors.grey[100],
+                          color: Colors.grey[200],
                         ),
                       );
                 },

@@ -7,11 +7,7 @@ class SearchService {
       String? genre,
       String? moviemeter,
       String? count}) async {
-<<<<<<< HEAD
-    const String apiKey = "k_6jl1svx7";
-=======
     const String apiKey = "k_vaew91xr";
->>>>>>> carousel
     // k_2b0tzkax
     // k_mvigl067
     // k_8dgpz1mi
@@ -19,10 +15,7 @@ class SearchService {
     // k_l6oi3cob
     // k_s4hmxd4c
     // k_6jl1svx7
-<<<<<<< HEAD
-=======
     // k_vaew91xr
->>>>>>> carousel
 
     final Uri url = Uri(
       scheme: 'https',
