@@ -26,8 +26,8 @@ class DetailsPage extends StatelessWidget {
             children: [
               Image.network(
                 movieDetails['image'],
-                fit: BoxFit.fill,
-                height: MediaQuery.of(context).size.height,
+                fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height+50
               ),
               BackdropFilter(
                 filter: new ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
