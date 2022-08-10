@@ -5,10 +5,9 @@ import 'package:imdb_api_hackathon/models/movie_model.dart';
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key, required this.movieDetails}) : super(key: key);
   final Map movieDetails;
-  
+
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       appBar: AppBar(
         title:
@@ -24,11 +23,9 @@ class DetailsPage extends StatelessWidget {
           Stack(
             //fit: StackFit.expand,
             children: [
-              Image.network(
-                movieDetails['image'],
-                fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height+50
-              ),
+              Image.network(movieDetails['image'],
+                  fit: BoxFit.cover,
+                  height: MediaQuery.of(context).size.height + 50),
               BackdropFilter(
                 filter: new ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
                 child: new Container(
@@ -40,12 +37,20 @@ class DetailsPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.network(movieDetails['image'],height: 420, width: 380,),
-                    Text(movieDetails['genres'] == ''? "" : "${movieDetails['genres']}",
-                    style: Theme.of(context).textTheme.headline6),
+                    Image.network(
+                      movieDetails['image'],
+                      height: 420,
+                      width: 380,
+                    ),
+                    Text(
+                        movieDetails['genres'] == ''
+                            ? ""
+                            : "${movieDetails['genres']}",
+                        style: Theme.of(context).textTheme.headline6),
                     Container(
-                     decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
-                     padding: EdgeInsets.all(10),
+                      decoration:
+                          BoxDecoration(color: Colors.black.withOpacity(0.5)),
+                      padding: EdgeInsets.all(10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -59,26 +64,41 @@ class DetailsPage extends StatelessWidget {
                                     style:
                                         Theme.of(context).textTheme.headline1),
                               ),
-                              Icon( Icons.star,color: Colors.yellow,size: 25.0,),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow,
+                                size: 25.0,
+                              ),
                               Text(
                                   movieDetails['imDbRating'] == ''
-                                      ? "Stars: No info"
+                                      ? "N/A"
                                       : "${movieDetails['imDbRating']}/10",
                                   style: Theme.of(context).textTheme.headline6),
                             ],
                           ),
-                         //Text('${movieDetails['description'].toString().substring(1,5)} • ${movieDetails['contentRating']} • ${movieDetails['runtimeStr']}',
-                         Text('${movieDetails['description']} • ${movieDetails['contentRating']} • ${movieDetails['runtimeStr']}',
-                         style: Theme.of(context).textTheme.headline6),
-                              
+                          //Text('${movieDetails['description'].toString().substring(1,5)} • ${movieDetails['contentRating']} • ${movieDetails['runtimeStr']}',
+                          Text(
+                              """${movieDetails['description'] == '' ? 'N/A' : movieDetails['description']} • 
+                              ${movieDetails['contentRating'] == '' ? 'N/A' : movieDetails['contentRating']} •
+                              ${movieDetails['runtimeStr'] == '' ? 'N/A' : movieDetails['runtimeStr']} •
+                              """,
+                              style: Theme.of(context).textTheme.headline6),
+
                           SizedBox(height: 10),
                           Text(
                               movieDetails['plot'] == ''
                                   ? "No info"
                                   : "${movieDetails['plot']}",
                               style: Theme.of(context).textTheme.headline6),
-                          const Divider(height: 20,thickness: 1,indent: 0,endIndent: 0,color: Colors.white,),
-                          Text('Cast',style: Theme.of(context).textTheme.headline4),
+                          const Divider(
+                            height: 20,
+                            thickness: 1,
+                            indent: 0,
+                            endIndent: 0,
+                            color: Colors.white,
+                          ),
+                          Text('Cast',
+                              style: Theme.of(context).textTheme.headline4),
                           SizedBox(height: 10),
                           Text(
                               movieDetails['stars'] == ''

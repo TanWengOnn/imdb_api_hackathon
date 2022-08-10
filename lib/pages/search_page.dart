@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
+import 'package:imdb_api_hackathon/widgets/search_movie_list.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
                 bottom: BorderSide(color: Colors.black),
               ),
             ),
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+            padding: EdgeInsets.only(bottom: 10),
             margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
             child: Row(
               children: [
@@ -85,8 +86,11 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           SizedBox(height: 10),
-          Text('Select Genres:',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Text('Select Genres:',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          ),
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -113,26 +117,8 @@ class _SearchPageState extends State<SearchPage> {
                                           "," +
                                           genresList[index];
                                     }
-                                    if (movieGenres?.contains("Action") ==
-                                        true) {
-                                      _isTagSelected[index] = true;
-                                    } else if (movieGenres
-                                            ?.contains("Comedy") ==
-                                        true) {
-                                      _isTagSelected[index] = true;
-                                    } else if (movieGenres
-                                            ?.contains("Family") ==
-                                        true) {
-                                      _isTagSelected[index] = true;
-                                    } else if (movieGenres?.contains("Crime") ==
-                                        true) {
-                                      _isTagSelected[index] = true;
-                                    } else if (movieGenres
-                                            ?.contains("Fantasy") ==
-                                        true) {
-                                      _isTagSelected[index] = true;
-                                    } else if (movieGenres
-                                            ?.contains("Horror") ==
+                                    if (movieGenres?.contains(
+                                            "${genresList[index]}") ==
                                         true) {
                                       _isTagSelected[index] = true;
                                     }
@@ -205,7 +191,7 @@ class _SearchPageState extends State<SearchPage> {
                   return CircularProgressIndicator();
                 }
                 if (state is MoviesLoaded) {
-                  return MovieList(searchModel: state.movieModel);
+                  return SearchMovieList(searchModel: state.movieModel);
                 } else {
                   if (state is MoviesError) {
                     print(state.errorMessage);
