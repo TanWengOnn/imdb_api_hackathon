@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-import 'package:imdb_api_hackathon/models/movie_model.dart';
+
+import 'package:flutter/material.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({Key? key, required this.movieDetails}) : super(key: key);
@@ -78,10 +78,9 @@ class DetailsPage extends StatelessWidget {
                           ),
                           //Text('${movieDetails['description'].toString().substring(1,5)} • ${movieDetails['contentRating']} • ${movieDetails['runtimeStr']}',
                           Text(
-                              """${movieDetails['description'] == '' ? 'N/A' : movieDetails['description']} • 
-                              ${movieDetails['contentRating'] == '' ? 'N/A' : movieDetails['contentRating']} •
-                              ${movieDetails['runtimeStr'] == '' ? 'N/A' : movieDetails['runtimeStr']} •
-                              """,
+                              '${movieDetails['description'] == '' ? 'N/A' : movieDetails['description']} • '
+                              '${movieDetails['contentRating'] == '' ? 'N/A' : movieDetails['contentRating']} • '
+                              '${movieDetails['runtimeStr'] == '' ? 'N/A' : movieDetails['runtimeStr']} • ',
                               style: Theme.of(context).textTheme.headline6),
 
                           SizedBox(height: 10),

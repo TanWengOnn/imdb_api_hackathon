@@ -58,8 +58,8 @@ class SearchMovieList extends StatelessWidget {
                           child: Image.network(
                             searchModel.results.elementAt(index).image,
                             fit: BoxFit.fill,
-                            height: 150,
-                            width: 100,
+                            height: 100,
+                            width: 80,
                           ),
                         ),
                         SizedBox(width: 10),
@@ -68,12 +68,9 @@ class SearchMovieList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '${searchModel.results.elementAt(index).title} ${searchModel.results.elementAt(index).description}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
+                                '${searchModel.results.elementAt(index).title} ',
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
-                              Text(
-                                  '${searchModel.results.elementAt(index).genres} • ${searchModel.results.elementAt(index).runtimeStr}'),
                             ],
                           ),
                         )

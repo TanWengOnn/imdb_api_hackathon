@@ -69,6 +69,11 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
+            subtitle1: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.bold),
           ),
         ),
         initialRoute: '/',
