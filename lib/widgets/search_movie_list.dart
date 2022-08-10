@@ -18,12 +18,13 @@ class SearchMovieList extends StatelessWidget {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: searchModel.results.length,
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, "/details-page",
                       arguments: DetailsPage(movieDetails: {
+                        'id': searchModel.results.elementAt(index).id,
                         'title': searchModel.results.elementAt(index).title,
                         'image': searchModel.results.elementAt(index).image,
                         'plot': searchModel.results.elementAt(index).plot,
@@ -48,34 +49,51 @@ class SearchMovieList extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
-                  elevation: 2,
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.network(
-                            searchModel.results.elementAt(index).image,
-                            fit: BoxFit.fill,
-                            height: 100,
-                            width: 80,
-                          ),
+                  // elevation: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Image.network(
+                          searchModel.results.elementAt(index).image,
+                          fit: BoxFit.fill,
+                          height: 100,
+                          width: 80,
                         ),
-                        SizedBox(width: 10),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${searchModel.results.elementAt(index).title} ',
-                                style: Theme.of(context).textTheme.subtitle1,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 50),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${searchModel.results.elementAt(index).title} ',
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                  size: 25.0,
+                                ),
+                                Text(
+                                    searchModel.results
+                                                .elementAt(index)
+                                                .imDbRating ==
+                                            ''
+                                        ? "N/A"
+                                        : "${searchModel.results.elementAt(index).imDbRating}/10",
+                                    style: TextStyle(color: Colors.black)),
+                              ],
+                            ),
+                            SizedBox(height: 5),
+                            Text(searchModel.results.elementAt(index).genres),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
               );

@@ -1,11 +1,10 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/trailer_cubit.dart';
 import 'package:imdb_api_hackathon/states/trailer_state.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key, required this.movieDetails}) : super(key: key);
@@ -25,7 +24,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
     trailerCubit = BlocProvider.of<TrailerCubit>(context)
       ..fetchTrailer(movieID: widget.movieDetails['id']);
-      print(widget.movieDetails['id']);
+    print(widget.movieDetails['id']);
   }
 
 // reference: https://github.com/Bytx-youtube/ytplayer/blob/main/lib/mainscreen.dart
@@ -103,7 +102,8 @@ class _DetailsPageState extends State<DetailsPage> {
                           );
                         }
 
-                        return Text(state is TrailerError ? state.errorMessage : "");
+                        return Text(
+                            state is TrailerError ? state.errorMessage : "");
                       },
                     ),
                     Image.network(

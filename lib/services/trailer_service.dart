@@ -2,9 +2,8 @@ import 'package:http/http.dart' as http;
 import 'package:imdb_api_hackathon/models/trailer_model.dart';
 
 class TrailerService {
-  Future<TrailerModel> fetchTrailerInformation(
-      {String? movieId}) async {
-    const String apiKey = "k_s4hmxd4c";
+  Future<TrailerModel> fetchTrailerInformation({String? movieId}) async {
+    const String apiKey = "k_w8s2x30q";
     // k_2b0tzkax
     // k_mvigl067
     // k_8dgpz1mi

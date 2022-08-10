@@ -42,7 +42,7 @@ void main() {
           create: (context) => TrailerCubit(),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold),
             headline2: TextStyle(
                 fontSize: 25,
-                color: Colors.deepOrange,
+                color: Colors.black,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             headline3: TextStyle(
@@ -100,9 +100,9 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           switch (settings.name) {
             case '/':
-              return MaterialPageRoute(builder: (_) => HomePage());
+              return MaterialPageRoute(builder: (_) => const HomePage());
             case '/search':
-              return MaterialPageRoute(builder: (_) => SearchPage());
+              return MaterialPageRoute(builder: (_) => const SearchPage());
             case '/details-page':
               DetailsPage data = settings.arguments as DetailsPage;
               return MaterialPageRoute(
