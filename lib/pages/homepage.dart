@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/comedy_cubit.dart';
-import 'package:imdb_api_hackathon/states/movie_state.dart';
-import 'package:imdb_api_hackathon/widgets/home_genre_button.dart';
 import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
 import 'package:imdb_api_hackathon/widgets/movie_category_list.dart';
+import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 
 class HomePage extends StatefulWidget {

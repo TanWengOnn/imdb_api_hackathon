@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/pages/movie_details_page.dart';
 import 'package:imdb_api_hackathon/pages/search_page.dart';
 import 'package:imdb_api_hackathon/states/comedy_cubit.dart';
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold),
             headline3: TextStyle(
                 fontSize: 20,
-                color: Colors.black,
+                color: Colors.red,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
             headline4: TextStyle(
