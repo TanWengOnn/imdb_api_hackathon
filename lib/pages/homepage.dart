@@ -8,10 +8,10 @@ import 'package:imdb_api_hackathon/states/horror_cubit.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/home_genre_button.dart';
 import 'package:imdb_api_hackathon/states/homepage_cubit.dart';
-import 'package:imdb_api_hackathon/widgets/homepage_skeleton_loading.dart';
 import 'package:imdb_api_hackathon/widgets/movie_category_list.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
+import 'package:imdb_api_hackathon/widgets/skeleton_homepage_loading.dart';
 
 
 class HomePage extends StatefulWidget {
