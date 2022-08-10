@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         padding: EdgeInsets.all(10),
         scrollDirection: Axis.vertical,
-        shrinkWrap: true,
+        // shrinkWrap: true,
         children: [
           
           Text('Top 10 Movies/Series',
