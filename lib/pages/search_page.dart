@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
-import 'package:imdb_api_hackathon/widgets/search_movie_list.dart';
+import 'package:imdb_api_hackathon/widgets/movie_search_list.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_search_loading.dart';
 
 class SearchPage extends StatefulWidget {
@@ -15,22 +15,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  // late SearchModel data;
-
-  // Future<void> getSearch() async {
-  //   SearchService searchInstance = SearchService();
-  //   data = await searchInstance.fetchSearchInformation("inception");
-  // }
-
-  TextEditingController titleController = TextEditingController();
-
-  @override
-  void dispose() {
-    titleController.dispose();
-    super.dispose();
-  }
-
-  late TextEditingController _controller;
   List<bool> _isTagSelected = [false, false, false, false, false, false];
 
   List genresList = [
@@ -43,6 +27,8 @@ class _SearchPageState extends State<SearchPage> {
   ];
   String? movieGenres = '';
 
+  TextEditingController titleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SearchCubit cubit = BlocProvider.of<SearchCubit>(context);
@@ -52,17 +38,11 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Search", style: Theme.of(context).textTheme.headline1),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        iconTheme: IconThemeData(
-          color: Color(0xFFE53935),
-        ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         scrollDirection: Axis.vertical,
         children: [
           Container(
@@ -103,7 +83,7 @@ class _SearchPageState extends State<SearchPage> {
           SizedBox(height: 10),
           Container(
             child: Text('Select Genres:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                style: Theme.of(context).textTheme.headline3),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -142,11 +122,13 @@ class _SearchPageState extends State<SearchPage> {
                             child: Text(
                               genresList[index],
                               style:
-                                  TextStyle(color: Colors.grey, fontSize: 12),
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             ),
                             style: ElevatedButton.styleFrom(
+                                side: BorderSide(color: Colors.red.shade700),
+                                shadowColor: Colors.red[700],
                                 shape: StadiumBorder(),
-                                primary: Colors.white,
+                                primary: Colors.red[700],
                                 fixedSize: Size(81, 25)),
                           ),
                         ],
@@ -230,22 +212,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
-// ListView.builder(
-//                     scrollDirection: Axis.vertical,
-//                     shrinkWrap: true,
-//                     itemCount: state.searchModel.results.length,
-//                     physics: ScrollPhysics(),
-//                     itemBuilder: (context, index) {
-//                       return Card(
-//                         child: Container(
-//                           child: Column(
-//                             children: [
-//                               Image.network("${state.searchModel.results.elementAt(index).image}", height: 20),
-//                               Text("${state.searchModel.results.elementAt(index).title}"),
-//                             ],
-//                           ),
-//                         ),
-//                       );
-//                     },
-//                   );

@@ -8,3 +8,8 @@
 3. Search page (optional)
 4. Navbar (optional)
 5. More details about the movie (OPTIONAL)
+
+# new Todo
+1. Route
+2. const var for all movie lists
+3. const var for image radii (movie_category_list, movie_list, movie_search_list)
