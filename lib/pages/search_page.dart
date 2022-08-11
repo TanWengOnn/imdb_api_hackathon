@@ -123,12 +123,6 @@ class _SearchPageState extends State<SearchPage> {
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 12),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                side: BorderSide(color: Colors.red.shade700),
-                                shadowColor: Colors.red[700],
-                                shape: StadiumBorder(),
-                                primary: Colors.red[700],
-                                fixedSize: Size(81, 25)),
                           ),
                         ],
                       );
@@ -214,12 +208,13 @@ class _SearchPageState extends State<SearchPage> {
 
                   // print("TEst: ${state.movieModel.results.toString()}");
                   return SearchMovieList(searchModel: state.movieModel);
-                } else {
-                  if (state is MoviesError) {
-                    print(state.errorMessage);
-                  }
-                  return Text("invalid search");
                 }
+                // else {
+                //   // if (state is MoviesError) {
+                //   //   print(state.errorMessage);
+                //   // }
+
+                // }
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },

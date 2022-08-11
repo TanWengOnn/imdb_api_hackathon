@@ -7,7 +7,6 @@ class SearchMovieList extends StatelessWidget {
       : super(key: key);
 
   final MovieModel searchModel;
-  static const IMAGE_BORDER_RADIUS = 15.0;
   static const double SEARCH_POSTER_HEIGHT = 100;
   static const double SEARCH_POSTER_WIDTH = SEARCH_POSTER_HEIGHT / 4.0 * 3;
   static const double HEIGHT = 400;
@@ -50,14 +49,14 @@ class SearchMovieList extends StatelessWidget {
   Widget searchMovieCard(BuildContext context, int index) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(IMAGE_BORDER_RADIUS),
+        borderRadius: BorderRadius.circular(15.0),
       ),
       // elevation: 2,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(IMAGE_BORDER_RADIUS),
+            borderRadius: BorderRadius.circular(15.0),
             child: Image.network(
               searchModel.results.elementAt(index).image,
               fit: BoxFit.fill,
