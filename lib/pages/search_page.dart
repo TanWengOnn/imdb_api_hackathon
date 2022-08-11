@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/states/search_cubit.dart';
-import 'package:imdb_api_hackathon/widgets/search_movie_list.dart';
+import 'package:imdb_api_hackathon/widgets/movie_search_list.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_search_loading.dart';
 
 class SearchPage extends StatefulWidget {
@@ -15,22 +15,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  // late SearchModel data;
-
-  // Future<void> getSearch() async {
-  //   SearchService searchInstance = SearchService();
-  //   data = await searchInstance.fetchSearchInformation("inception");
-  // }
-
-  TextEditingController titleController = TextEditingController();
-
-  @override
-  void dispose() {
-    titleController.dispose();
-    super.dispose();
-  }
-
-  late TextEditingController _controller;
   List<bool> _isTagSelected = [false, false, false, false, false, false];
 
   List genresList = [
@@ -42,6 +26,8 @@ class _SearchPageState extends State<SearchPage> {
     "Horror",
   ];
   String? movieGenres = '';
+
+  TextEditingController titleController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +42,11 @@ class _SearchPageState extends State<SearchPage> {
         title: Text("Search", style: Theme.of(context).textTheme.headline1),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         scrollDirection: Axis.vertical,
         children: [
           Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.black),
-              ),
-            ),
+          
             padding: EdgeInsets.only(bottom: 10),
             child: Row(
               children: [
@@ -86,7 +68,7 @@ class _SearchPageState extends State<SearchPage> {
                     prefixIcon: Icon(Icons.search),
                     hintText: "Search Movies/Series",
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                       borderSide: BorderSide.none,
                     ),
                   ),
@@ -94,11 +76,12 @@ class _SearchPageState extends State<SearchPage> {
               ],
             ),
           ),
+          Divider( height: 20, thickness: 1, indent: 0, endIndent: 0 ),
           SizedBox(height: 10),
           Container(
-            
             child: Text('Select Genres:',
-                style: Theme.of(context).textTheme.headline3)),
+                style: Theme.of(context).textTheme.subtitle1),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -109,7 +92,7 @@ class _SearchPageState extends State<SearchPage> {
                   child: CarouselSlider.builder(
                     options: CarouselOptions(
                       scrollDirection: Axis.horizontal,
-                      viewportFraction: 0.27,
+                      viewportFraction: 0.25,
                     ),
                     itemCount: genresList.length,
                     itemBuilder: (context, index, realIndex) {
@@ -138,10 +121,7 @@ class _SearchPageState extends State<SearchPage> {
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 12),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                shape: StadiumBorder(),
-                                primary: Colors.white,
-                                fixedSize: Size(81, 25)),
+                          
                           ),
                         ],
                       );
@@ -165,14 +145,17 @@ class _SearchPageState extends State<SearchPage> {
                   child: Row(
                     children: [
                       Text("Apply Selection ",
-                          style: TextStyle(color: Colors.black)),
+                          style: Theme.of(context).textTheme.headline6),
                       Icon(
                         Icons.done,
                         color: Colors.green,
                       ),
                     ],
                   ),
-                  style: ElevatedButton.styleFrom(primary: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white, fixedSize: Size(170, 30),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),)),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
@@ -185,11 +168,14 @@ class _SearchPageState extends State<SearchPage> {
                 child: Row(
                   children: [
                     Text("Reset Selection ",
-                        style: TextStyle(color: Colors.black)),
+                        style: Theme.of(context).textTheme.headline6),
                     Icon(Icons.refresh, color: Colors.blue),
                   ],
                 ),
-                style: ElevatedButton.styleFrom(primary: Colors.white),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.white, fixedSize: Size(170, 30),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
               ),
             ],
           ),
@@ -224,22 +210,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
-// ListView.builder(
-//                     scrollDirection: Axis.vertical,
-//                     shrinkWrap: true,
-//                     itemCount: state.searchModel.results.length,
-//                     physics: ScrollPhysics(),
-//                     itemBuilder: (context, index) {
-//                       return Card(
-//                         child: Container(
-//                           child: Column(
-//                             children: [
-//                               Image.network("${state.searchModel.results.elementAt(index).image}", height: 20),
-//                               Text("${state.searchModel.results.elementAt(index).title}"),
-//                             ],
-//                           ),
-//                         ),
-//                       );
-//                     },
-//                   );

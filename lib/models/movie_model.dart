@@ -2,7 +2,6 @@
 //
 //     final imdbModel = imdbModelFromMap(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class MovieModel {
@@ -19,20 +18,12 @@ class MovieModel {
   factory MovieModel.fromJson(String str) =>
       MovieModel.fromMap(json.decode(str));
 
-  // String toJson() => json.encode(toMap());
-
   factory MovieModel.fromMap(Map<String, dynamic> json) => MovieModel(
         queryString: json["queryString"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
         errorMessage: json["errorMessage"],
       );
-
-  // Map<String, dynamic> toMap() => {
-  //   "queryString": queryString,
-  //   "results": List<dynamic>.from(results.map((x) => x.toMap())),
-  //   "errorMessage": errorMessage,
-  // };
 }
 
 class Result {
@@ -70,12 +61,10 @@ class Result {
 
   factory Result.fromJson(String str) => Result.fromMap(json.decode(str));
 
-  // String toJson() => json.encode(toMap());
-
   factory Result.fromMap(Map<String, dynamic> json) => Result(
         id: json["id"],
         image: json["image"],
-        title: json["title"]??'Unknown',
+        title: json["title"] ?? 'Unknown',
         description: json["description"],
         runtimeStr: json["runtimeStr"] ?? 'N/A',
         genres: json["genres"] ?? 'N/A',
@@ -94,23 +83,6 @@ class Result {
             : List<StarList>.from(
                 json["starList"].map((x) => StarList.fromMap(x))),
       );
-
-  // Map<String, dynamic> toMap() => {
-  //   "id": id,
-  //   "image": image,
-  //   "title": title,
-  //   "description": description,
-  //   "runtimeStr": runtimeStr == null ? null : runtimeStr,
-  //   "genres": genres == null ? null : genres,
-  //   "genreList": genreList == null ? null : List<dynamic>.from(genreList.map((x) => x.toMap())),
-  //   "contentRating": contentRating == null ? null : contentRating,
-  //   "imDbRating": imDbRating == null ? null : imDbRating,
-  //   "imDbRatingVotes": imDbRatingVotes == null ? null : imDbRatingVotes,
-  //   "metacriticRating": metacriticRating == null ? null : metacriticRating,
-  //   "plot": plot == null ? null : plot,
-  //   "stars": stars == null ? null : stars,
-  //   "starList": starList == null ? null : List<dynamic>.from(starList.map((x) => x.toMap())),
-  // };
 }
 
 class GenreList {
@@ -124,17 +96,10 @@ class GenreList {
 
   factory GenreList.fromJson(String str) => GenreList.fromMap(json.decode(str));
 
-  // String toJson() => json.encode(toMap());
-
   factory GenreList.fromMap(Map<String, dynamic> json) => GenreList(
         key: json["key"],
         value: json["value"],
       );
-
-  // Map<String, dynamic> toMap() => {
-  //   "key": key,
-  //   "value": value,
-  // };
 }
 
 class StarList {
@@ -148,15 +113,8 @@ class StarList {
 
   factory StarList.fromJson(String str) => StarList.fromMap(json.decode(str));
 
-  // String toJson() => json.encode(toMap());
-
   factory StarList.fromMap(Map<String, dynamic> json) => StarList(
         id: json["id"],
         name: json["name"],
       );
-
-  // Map<String, dynamic> toMap() => {
-  //   "id": id,
-  //   "name": name,
-  // };
 }

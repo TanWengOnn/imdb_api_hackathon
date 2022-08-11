@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:imdb_api_hackathon/models/movie_model.dart';
 
@@ -7,7 +8,7 @@ class SearchService {
       String? genre,
       String? moviemeter,
       String? count}) async {
-    const String apiKey = "k_rkos0u75";
+    const String apiKey = "k_w8s2x30q";
     // k_2b0tzkax
     // k_mvigl067
     // k_8dgpz1mi
@@ -34,7 +35,8 @@ class SearchService {
     http.Response response = await http.get(url);
 
     if (response.statusCode == 200) {
-      print("service: ${url}");
+      // ignore: avoid_print
+      print("service: $url");
       return MovieModel.fromJson(response.body);
     } else {
       throw Exception("Failed to load movies information.");
