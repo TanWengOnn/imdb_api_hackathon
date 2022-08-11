@@ -102,7 +102,6 @@ class _SearchPageState extends State<SearchPage> {
           ),
           SizedBox(height: 10),
           Container(
-            
             child: Text('Select Genres:',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
           ),
