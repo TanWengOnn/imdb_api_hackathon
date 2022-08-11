@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   static const double MOVIE_HEIGHT = 280;
   static const double MOVIE_WIDTH = MOVIE_HEIGHT/4.0*3;
-  static const double CATEGORIES_HEIGHT = 180;
+  static const double CATEGORIES_HEIGHT = 160;
   static const double CATEGORIES_WIDTH = CATEGORIES_HEIGHT/4.0*3;
   
 
