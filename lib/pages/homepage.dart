@@ -78,14 +78,14 @@ class _HomePageState extends State<HomePage> {
       ..fetchHomepage(moviemeter: '1,10');
     comedyCubit = BlocProvider.of<ComedyCubit>(context)
       ..fetchComedy(genres: 'Comedy', count: '10');
-    // actionCubit = BlocProvider.of<ActionCubit>(context)
-    //   ..fetchAction(genres: 'Action', count: '10');
-    // fantasyCubit = BlocProvider.of<FantasyCubit>(context)
-    //   ..fetchFantasy(genres: 'Fantasy', count: '10');
-    // horrorCubit = BlocProvider.of<HorrorCubit>(context)
-    //   ..fetchHorror(genres: 'Horror', count: '10');
-    // crimeCubit = BlocProvider.of<CrimeCubit>(context)
-    //   ..fetchCrime(genres: 'Crime', count: '10');
+    actionCubit = BlocProvider.of<ActionCubit>(context)
+      ..fetchAction(genres: 'Action', count: '10');
+    fantasyCubit = BlocProvider.of<FantasyCubit>(context)
+      ..fetchFantasy(genres: 'Fantasy', count: '10');
+    horrorCubit = BlocProvider.of<HorrorCubit>(context)
+      ..fetchHorror(genres: 'Horror', count: '10');
+    crimeCubit = BlocProvider.of<CrimeCubit>(context)
+      ..fetchCrime(genres: 'Crime', count: '10');
   }
 
   @override
@@ -152,46 +152,46 @@ class _HomePageState extends State<HomePage> {
                       width: CATEGORIES_WIDTH);
                 },
               ),
-              // Text("Action", style: Theme.of(context).textTheme.headline2),
-              // BlocBuilder<ActionCubit, MoviesState>(
-              //   bloc: actionCubit,
-              //   builder: (context, state) {
-              //     return getMovieCategoriesInfo(
-              //         state: state,
-              //         height: CATEGORIES_HEIGHT,
-              //         width: CATEGORIES_WIDTH);
-              //   },
-              // ),
-              // Text("Fantasy", style: Theme.of(context).textTheme.headline2),
-              // BlocBuilder<FantasyCubit, MoviesState>(
-              //   bloc: fantasyCubit,
-              //   builder: (context, state) {
-              //     return getMovieCategoriesInfo(
-              //         state: state,
-              //         height: CATEGORIES_HEIGHT,
-              //         width: CATEGORIES_WIDTH);
-              //   },
-              // ),
-              // Text("Horror", style: Theme.of(context).textTheme.headline2),
-              // BlocBuilder<HorrorCubit, MoviesState>(
-              //   bloc: horrorCubit,
-              //   builder: (context, state) {
-              //     return getMovieCategoriesInfo(
-              //         state: state,
-              //         height: CATEGORIES_HEIGHT,
-              //         width: CATEGORIES_WIDTH);
-              //   },
-              // ),
-              // Text("Crime", style: Theme.of(context).textTheme.headline2),
-              // BlocBuilder<CrimeCubit, MoviesState>(
-              //   bloc: crimeCubit,
-              //   builder: (context, state) {
-              //     return getMovieCategoriesInfo(
-              //         state: state,
-              //         height: CATEGORIES_HEIGHT,
-              //         width: CATEGORIES_WIDTH);
-              //   },
-              // ),
+              Text("Action", style: Theme.of(context).textTheme.headline2),
+              BlocBuilder<ActionCubit, MoviesState>(
+                bloc: actionCubit,
+                builder: (context, state) {
+                  return getMovieCategoriesInfo(
+                      state: state,
+                      height: CATEGORIES_HEIGHT,
+                      width: CATEGORIES_WIDTH);
+                },
+              ),
+              Text("Fantasy", style: Theme.of(context).textTheme.headline2),
+              BlocBuilder<FantasyCubit, MoviesState>(
+                bloc: fantasyCubit,
+                builder: (context, state) {
+                  return getMovieCategoriesInfo(
+                      state: state,
+                      height: CATEGORIES_HEIGHT,
+                      width: CATEGORIES_WIDTH);
+                },
+              ),
+              Text("Horror", style: Theme.of(context).textTheme.headline2),
+              BlocBuilder<HorrorCubit, MoviesState>(
+                bloc: horrorCubit,
+                builder: (context, state) {
+                  return getMovieCategoriesInfo(
+                      state: state,
+                      height: CATEGORIES_HEIGHT,
+                      width: CATEGORIES_WIDTH);
+                },
+              ),
+              Text("Crime", style: Theme.of(context).textTheme.headline2),
+              BlocBuilder<CrimeCubit, MoviesState>(
+                bloc: crimeCubit,
+                builder: (context, state) {
+                  return getMovieCategoriesInfo(
+                      state: state,
+                      height: CATEGORIES_HEIGHT,
+                      width: CATEGORIES_WIDTH);
+                },
+              ),
             ],
           ),
         );
