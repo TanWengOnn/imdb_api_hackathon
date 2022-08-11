@@ -48,15 +48,12 @@ class _SearchPageState extends State<SearchPage> {
         scrollDirection: Axis.vertical,
         children: [
           Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colors.black),
-              ),
-            ),
+          
             padding: EdgeInsets.only(bottom: 10),
             child: Row(
               children: [
                 TextField(
+                  style: TextStyle(color: Colors.black),
                   textInputAction: TextInputAction.done,
                   onSubmitted: (value) {
                     if (titleController.text.isNotEmpty || movieGenres != '') {
@@ -74,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
                     prefixIcon: Icon(Icons.search),
                     hintText: "Search Movies/Series",
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                       borderSide: BorderSide.none,
                     ),
                   ),
@@ -82,10 +79,11 @@ class _SearchPageState extends State<SearchPage> {
               ],
             ),
           ),
+          Divider( height: 20, thickness: 1, indent: 0, endIndent: 0 ),
           SizedBox(height: 10),
           Container(
             child: Text('Select Genres:',
-                style: Theme.of(context).textTheme.headline3),
+                style: Theme.of(context).textTheme.subtitle1),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +95,7 @@ class _SearchPageState extends State<SearchPage> {
                   child: CarouselSlider.builder(
                     options: CarouselOptions(
                       scrollDirection: Axis.horizontal,
-                      viewportFraction: 0.27,
+                      viewportFraction: 0.25,
                     ),
                     itemCount: genresList.length,
                     itemBuilder: (context, index, realIndex) {
@@ -126,10 +124,7 @@ class _SearchPageState extends State<SearchPage> {
                               style:
                                   TextStyle(color: Colors.grey, fontSize: 12),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                shape: StadiumBorder(),
-                                primary: Colors.white,
-                                fixedSize: Size(81, 25)),
+                          
                           ),
                         ],
                       );
@@ -153,14 +148,17 @@ class _SearchPageState extends State<SearchPage> {
                   child: Row(
                     children: [
                       Text("Apply Selection ",
-                          style: TextStyle(color: Colors.black)),
+                          style: Theme.of(context).textTheme.headline6),
                       Icon(
                         Icons.done,
                         color: Colors.green,
                       ),
                     ],
                   ),
-                  style: ElevatedButton.styleFrom(primary: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white, fixedSize: Size(170, 30),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),)),
               SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
@@ -173,11 +171,14 @@ class _SearchPageState extends State<SearchPage> {
                 child: Row(
                   children: [
                     Text("Reset Selection ",
-                        style: TextStyle(color: Colors.black)),
+                        style: Theme.of(context).textTheme.headline6),
                     Icon(Icons.refresh, color: Colors.blue),
                   ],
                 ),
-                style: ElevatedButton.styleFrom(primary: Colors.white),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.white, fixedSize: Size(170, 30),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
               ),
             ],
           ),
@@ -196,13 +197,24 @@ class _SearchPageState extends State<SearchPage> {
                   return SearchSkeletonLoading(height: 100, width: 80);
                 }
                 if (state is MoviesLoaded) {
-                  return SearchMovieList(searchModel: state.movieModel);
-                } else {
-                  if (state is MoviesError) {
-                    print(state.errorMessage);
+                  if (state.movieModel.results.toString() == "[]"){
+                    return Center(
+                      child: Text(
+                        "Invalid Search",
+                        style: Theme.of(context).textTheme.headline3,
+                      )
+                      );
                   }
-                  return Text("invalid search");
-                }
+
+                  // print("TEst: ${state.movieModel.results.toString()}");
+                  return SearchMovieList(searchModel: state.movieModel);
+                } 
+                // else {
+                //   // if (state is MoviesError) {
+                //   //   print(state.errorMessage);
+                //   // }
+                 
+                // }
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },

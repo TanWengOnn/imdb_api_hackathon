@@ -53,6 +53,7 @@ class MovieCategoryList extends StatelessWidget {
   Widget categoryMovieCard(BuildContext context, int index) {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
+      color: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       elevation: 0,
       child: Column(

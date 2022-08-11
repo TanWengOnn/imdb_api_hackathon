@@ -71,7 +71,7 @@ class SearchMovieList extends StatelessWidget {
               children: [
                 Text(
                   '${searchModel.results.elementAt(index).title} ',
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
                 Row(
                   children: [
@@ -84,11 +84,11 @@ class SearchMovieList extends StatelessWidget {
                         searchModel.results.elementAt(index).imDbRating == ''
                             ? "N/A"
                             : "${searchModel.results.elementAt(index).imDbRating}/10",
-                        style: const TextStyle(color: Colors.black)),
+                        style: Theme.of(context).textTheme.headline3),
                   ],
                 ),
                 const SizedBox(height: 5),
-                Text(searchModel.results.elementAt(index).genres),
+                Text(searchModel.results.elementAt(index).genres, style: Theme.of(context).textTheme.headline4),
               ],
             ),
           )

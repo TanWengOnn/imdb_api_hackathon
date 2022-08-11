@@ -30,7 +30,7 @@ class _DetailsPageState extends State<DetailsPage> {
   static const double POSTER_WIDTH = POSTER_HEIGHT / 4.0 * 3;
 
   static const double NORMAL_SPACE = 10;
-  static const double BELOW_TITLE_SPACE = 10;
+  static const double BELOW_TITLE_SPACE = 15;
 
   @override
   void initState() {
@@ -83,6 +83,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       height: POSTER_HEIGHT,
                       width: POSTER_WIDTH,
                     ),
+                    const SizedBox(height: NORMAL_SPACE),
                     BlocBuilder<TrailerCubit, TrailerState>(
                       bloc: trailerCubit,
                       builder: (context, state) {
@@ -91,7 +92,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     const SizedBox(height: NORMAL_SPACE),
                     Text(widget.movieDetails.genres,
-                        style: Theme.of(context).textTheme.headline6),
+                        style: Theme.of(context).textTheme.subtitle2),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -108,7 +109,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               size: 25.0,
                             ),
                             Text("${widget.movieDetails.imDbRating}/10",
-                                style: Theme.of(context).textTheme.headline6),
+                                style: Theme.of(context).textTheme.headline5),
                           ],
                         ),
                         Text(
@@ -118,10 +119,13 @@ class _DetailsPageState extends State<DetailsPage> {
                             style: Theme.of(context).textTheme.subtitle2),
                         const SizedBox(height: NORMAL_SPACE),
                         Text("Plot Summary",
-                            style: Theme.of(context).textTheme.headline4),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
                         const SizedBox(height: BELOW_TITLE_SPACE),
                         Text(widget.movieDetails.plot,
-                            style: Theme.of(context).textTheme.headline6),
+                            style: Theme.of(context).textTheme.headline5),
                         const SizedBox(height: NORMAL_SPACE),
                         const Divider(
                           height: 20,
@@ -131,10 +135,13 @@ class _DetailsPageState extends State<DetailsPage> {
                           color: Colors.white,
                         ),
                         Text('Cast',
-                            style: Theme.of(context).textTheme.headline4),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
                         const SizedBox(height: BELOW_TITLE_SPACE),
                         Text(widget.movieDetails.stars,
-                            style: Theme.of(context).textTheme.headline6),
+                            style: Theme.of(context).textTheme.headline5),
                       ],
                     )
                   ],
@@ -165,12 +172,15 @@ class _DetailsPageState extends State<DetailsPage> {
         },
         label: const Text("Trailer"),
         icon: const Icon(Icons.play_arrow),
-        style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(const ui.Color(0xFFE53935)),
+        style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          primary: ui.Color(0xFFE53935),
+          fixedSize: Size(100, 40),
         ),
       );
     }
+
     return Text(state is TrailerError ? state.errorMessage : "");
   }
 

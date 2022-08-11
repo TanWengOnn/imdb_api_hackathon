@@ -14,7 +14,7 @@ import 'package:imdb_api_hackathon/widgets/skeleton_categories_loading.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_homepage_loading.dart';
 import 'package:provider/provider.dart';
 import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
-import 'package:switcher_button/switcher_button.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class HomePage extends StatefulWidget {
   static const String route = '/';
@@ -92,8 +92,6 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         appBar: AppBar(
           title: Text("Movies", style: Theme.of(context).textTheme.headline1),
-          backgroundColor: Colors.white,
-          elevation: 1,
           actions: [
             Row(
               children: [
@@ -107,14 +105,23 @@ class _HomePageState extends State<HomePage> {
                   ),
                   color: Color(0xFFE53935),
                 ),
-                SwitcherButton(
+                FlutterSwitch(
                   value: themeNotifier.isDark ? false : true,
-                  onChange: (value) {
+                  activeIcon: Icon(
+                    Icons.wb_sunny_sharp,
+                    size: 30,
+                  ),
+                  activeColor: Colors.grey.shade200,
+                  inactiveColor: Color.fromARGB(255, 49, 48, 48),
+                  inactiveIcon:
+                      Icon(Icons.nightlight, color: Colors.black, size: 30),
+                  height: 30,
+                  onToggle: (value) {
                     themeNotifier.isDark
                         ? themeNotifier.isDark = false
                         : themeNotifier.isDark = true;
                   },
-                )
+                ),
               ],
             ),
           ],
@@ -126,7 +133,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 10),
             Text('Top 10 Movies/Series',
-                style: Theme.of(context).textTheme.headline3),
+                style: Theme.of(context).textTheme.headline2),
             BlocBuilder<HomepageCubit, MoviesState>(
               bloc: homepageCubit,
               builder: (context, state) {
@@ -134,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                     state: state, height: MOVIE_HEIGHT, width: MOVIE_WIDTH);
               },
             ),
-            Text("Comedy", style: Theme.of(context).textTheme.headline3),
+            Text("Comedy", style: Theme.of(context).textTheme.headline2),
             BlocBuilder<ComedyCubit, MoviesState>(
               bloc: comedyCubit,
               builder: (context, state) {
@@ -144,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                     width: CATEGORIES_WIDTH);
               },
             ),
-            // Text("Action", style: Theme.of(context).textTheme.headline3),
+            // Text("Action", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<ActionCubit, MoviesState>(
             //   bloc: actionCubit,
             //   builder: (context, state) {
@@ -154,7 +161,7 @@ class _HomePageState extends State<HomePage> {
             //         width: CATEGORIES_WIDTH);
             //   },
             // ),
-            // Text("Fantasy", style: Theme.of(context).textTheme.headline3),
+            // Text("Fantasy", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<FantasyCubit, MoviesState>(
             //   bloc: fantasyCubit,
             //   builder: (context, state) {
@@ -164,7 +171,7 @@ class _HomePageState extends State<HomePage> {
             //         width: CATEGORIES_WIDTH);
             //   },
             // ),
-            // Text("Horror", style: Theme.of(context).textTheme.headline3),
+            // Text("Horror", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<HorrorCubit, MoviesState>(
             //   bloc: horrorCubit,
             //   builder: (context, state) {
@@ -174,7 +181,7 @@ class _HomePageState extends State<HomePage> {
             //         width: CATEGORIES_WIDTH);
             //   },
             // ),
-            // Text("Crime", style: Theme.of(context).textTheme.headline3),
+            // Text("Crime", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<CrimeCubit, MoviesState>(
             //   bloc: crimeCubit,
             //   builder: (context, state) {
