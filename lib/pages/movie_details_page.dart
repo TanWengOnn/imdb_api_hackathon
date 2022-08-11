@@ -4,13 +4,14 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imdb_api_hackathon/models/movie_model.dart';
 import 'package:imdb_api_hackathon/states/trailer_cubit.dart';
 import 'package:imdb_api_hackathon/states/trailer_state.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({Key? key, required this.movieDetails}) : super(key: key);
-  final Map movieDetails;
+  final Result movieDetails;
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -19,7 +20,7 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   late final TrailerCubit trailerCubit;
   late YoutubePlayerController _controller;
-  // ignore: constant_identifier_names
+
   static const double TRAILER_HEIGHT = 300;
   static const double TRAILER_WIDTH = TRAILER_HEIGHT / 3.0 * 4;
   static const double BOTTOM_EXTRA_HEIGHT = 200;
@@ -34,8 +35,8 @@ class _DetailsPageState extends State<DetailsPage> {
     super.initState();
 
     trailerCubit = BlocProvider.of<TrailerCubit>(context)
-      ..fetchTrailer(movieID: widget.movieDetails['id']);
-    print(widget.movieDetails['id']);
+      ..fetchTrailer(movieID: widget.movieDetails.id);
+    print(widget.movieDetails.id);
   }
 
   @override
@@ -49,7 +50,7 @@ class _DetailsPageState extends State<DetailsPage> {
         children: [
           Stack(
             children: [
-              Image.network(widget.movieDetails['image'],
+              Image.network(widget.movieDetails.image,
                   fit: BoxFit.cover,
                   height:
                       MediaQuery.of(context).size.height + BOTTOM_EXTRA_HEIGHT),
@@ -76,7 +77,7 @@ class _DetailsPageState extends State<DetailsPage> {
                   children: [
                     const SizedBox(height: BELOW_TITLE_SPACE),
                     Image.network(
-                      widget.movieDetails['image'],
+                      widget.movieDetails.image,
                       height: POSTER_HEIGHT,
                       width: POSTER_WIDTH,
                     ),
@@ -87,7 +88,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       },
                     ),
                     const SizedBox(height: NORMAL_SPACE),
-                    Text(widget.movieDetails['genres'],
+                    Text(widget.movieDetails.genres,
                         style: Theme.of(context).textTheme.headline6),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +97,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         Row(
                           children: [
                             Expanded(
-                              child: Text('${widget.movieDetails['title']}',
+                              child: Text(widget.movieDetails.title,
                                   style: Theme.of(context).textTheme.headline1),
                             ),
                             const Icon(
@@ -104,20 +105,20 @@ class _DetailsPageState extends State<DetailsPage> {
                               color: Colors.yellow,
                               size: 25.0,
                             ),
-                            Text("${widget.movieDetails['imDbRating']}/10",
+                            Text("${widget.movieDetails.imDbRating}/10",
                                 style: Theme.of(context).textTheme.headline6),
                           ],
                         ),
                         Text(
-                            '${widget.movieDetails['description']} • '
-                            '${widget.movieDetails['contentRating']} • '
-                            '${widget.movieDetails['runtimeStr']}',
+                            '${widget.movieDetails.description} • '
+                            '${widget.movieDetails.contentRating} • '
+                            '${widget.movieDetails.runtimeStr}',
                             style: Theme.of(context).textTheme.subtitle2),
                         const SizedBox(height: NORMAL_SPACE),
                         Text("Plot Summary",
                             style: Theme.of(context).textTheme.headline4),
                         const SizedBox(height: BELOW_TITLE_SPACE),
-                        Text(widget.movieDetails['plot'],
+                        Text(widget.movieDetails.plot,
                             style: Theme.of(context).textTheme.headline6),
                         const SizedBox(height: NORMAL_SPACE),
                         const Divider(
@@ -130,7 +131,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         Text('Cast',
                             style: Theme.of(context).textTheme.headline4),
                         const SizedBox(height: BELOW_TITLE_SPACE),
-                        Text(widget.movieDetails['stars'],
+                        Text(widget.movieDetails.stars,
                             style: Theme.of(context).textTheme.headline6),
                       ],
                     )

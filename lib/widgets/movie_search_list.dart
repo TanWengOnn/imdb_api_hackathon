@@ -39,22 +39,8 @@ class SearchMovieList extends StatelessWidget {
 
   void navigateToDetailPage(BuildContext context, int index) {
     Navigator.pushNamed(context, "/details-page",
-        arguments: DetailsPage(movieDetails: {
-          'id': searchModel.results.elementAt(index).id,
-          'title': searchModel.results.elementAt(index).title,
-          'image': searchModel.results.elementAt(index).image,
-          'plot': searchModel.results.elementAt(index).plot,
-          'description': searchModel.results.elementAt(index).description,
-          'contentRating': searchModel.results.elementAt(index).contentRating,
-          'runtimeStr': searchModel.results.elementAt(index).runtimeStr,
-          'imDbRating': searchModel.results.elementAt(index).imDbRating,
-          'imDbRatingVotes':
-              searchModel.results.elementAt(index).imDbRatingVotes,
-          'stars': searchModel.results.elementAt(index).stars,
-          'genres': searchModel.results.elementAt(index).genres,
-          // 'genreList': searchModel.results.elementAt(index).genreList,
-          // 'starList': searchModel.results.elementAt(index).starList,
-        }));
+        arguments:
+            DetailsPage(movieDetails: searchModel.results.elementAt(index)));
   }
 
   Widget searchMovieCard(BuildContext context, int index) {
