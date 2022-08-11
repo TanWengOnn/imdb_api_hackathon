@@ -13,7 +13,7 @@ import 'package:imdb_api_hackathon/widgets/skeleton_categories_loading.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_homepage_loading.dart';
 import 'package:provider/provider.dart';
 import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
-import 'package:switcher_button/switcher_button.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -100,14 +100,23 @@ class _HomePageState extends State<HomePage> {
                   ),
                   color: Color(0xFFE53935),
                 ),
-                SwitcherButton(
+                FlutterSwitch(
                   value: themeNotifier.isDark ? false : true,
-                  onChange: (value) {
+                  activeIcon: Icon(
+                    Icons.wb_sunny_sharp,
+                    size: 30,
+                  ),
+                  activeColor: Colors.grey.shade200,
+                  inactiveColor: Color.fromARGB(255, 49, 48, 48),
+                  inactiveIcon:
+                      Icon(Icons.nightlight, color: Colors.black, size: 30),
+                  height: 30,
+                  onToggle: (value) {
                     themeNotifier.isDark
                         ? themeNotifier.isDark = false
                         : themeNotifier.isDark = true;
                   },
-                )
+                ),
               ],
             ),
           ],

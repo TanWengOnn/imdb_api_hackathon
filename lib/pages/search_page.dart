@@ -51,6 +51,7 @@ class _SearchPageState extends State<SearchPage> {
             child: Row(
               children: [
                 TextField(
+                  style: TextStyle(color: Colors.black),
                   textInputAction: TextInputAction.done,
                   onSubmitted: (value) {
                     if (titleController.text.isNotEmpty || movieGenres != '') {
@@ -194,13 +195,24 @@ class _SearchPageState extends State<SearchPage> {
                   return SearchSkeletonLoading(height: 100, width: 80);
                 }
                 if (state is MoviesLoaded) {
-                  return SearchMovieList(searchModel: state.movieModel);
-                } else {
-                  if (state is MoviesError) {
-                    print(state.errorMessage);
+                  if (state.movieModel.results.toString() == "[]"){
+                    return Center(
+                      child: Text(
+                        "Invalid Search",
+                        style: Theme.of(context).textTheme.headline3,
+                      )
+                      );
                   }
-                  return Text("invalid search");
-                }
+
+                  // print("TEst: ${state.movieModel.results.toString()}");
+                  return SearchMovieList(searchModel: state.movieModel);
+                } 
+                // else {
+                //   // if (state is MoviesError) {
+                //   //   print(state.errorMessage);
+                //   // }
+                 
+                // }
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },

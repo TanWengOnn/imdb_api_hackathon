@@ -27,7 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  switcher_button: ^0.0.4
+  
   flutter:
     sdk: flutter
   
@@ -41,6 +41,7 @@ dependencies:
   carousel_slider: ^4.1.1
   shared_preferences: ^2.0.15
   provider: ^6.0.3
+  flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_test:
