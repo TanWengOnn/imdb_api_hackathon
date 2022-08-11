@@ -13,7 +13,7 @@ class SearchSkeletonLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SkeletonAnimation(
-      child: Container(
+      child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: ListView.builder(

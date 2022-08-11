@@ -38,7 +38,6 @@ class _DetailsPageState extends State<DetailsPage> {
 
     trailerCubit = BlocProvider.of<TrailerCubit>(context)
       ..fetchTrailer(movieID: widget.movieDetails.id);
-    print(widget.movieDetails.id);
   }
 
   @override
@@ -118,14 +117,19 @@ class _DetailsPageState extends State<DetailsPage> {
                             '${widget.movieDetails.runtimeStr}',
                             style: Theme.of(context).textTheme.subtitle2),
                         const SizedBox(height: NORMAL_SPACE),
-                        Text("Plot Summary",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                        const Text(
+                          "Plot Summary",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                         const SizedBox(height: BELOW_TITLE_SPACE),
-                        Text(widget.movieDetails.plot,
-                            style: Theme.of(context).textTheme.headline5),
+                        Text(
+                          widget.movieDetails.plot,
+                          style: Theme.of(context).textTheme.headline5,
+                          textAlign: TextAlign.justify,
+                        ),
                         const SizedBox(height: NORMAL_SPACE),
                         const Divider(
                           height: 20,
@@ -134,7 +138,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           endIndent: 0,
                           color: Colors.white,
                         ),
-                        Text('Cast',
+                        const Text('Cast',
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -175,8 +179,8 @@ class _DetailsPageState extends State<DetailsPage> {
         style: ElevatedButton.styleFrom(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          primary: ui.Color(0xFFE53935),
-          fixedSize: Size(100, 40),
+          primary: const ui.Color(0xFFE53935),
+          fixedSize: const Size(100, 40),
         ),
       );
     }
@@ -194,7 +198,7 @@ class _DetailsPageState extends State<DetailsPage> {
     );
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
-      content: Container(
+      content: SizedBox(
         width: TRAILER_WIDTH,
         height: TRAILER_HEIGHT,
         child: YoutubePlayer(

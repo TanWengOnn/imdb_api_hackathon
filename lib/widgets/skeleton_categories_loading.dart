@@ -14,7 +14,7 @@ class CategoriesSkeletonLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SkeletonAnimation(
-      child: Container(
+      child: SizedBox(
         height: height + 20,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
@@ -36,5 +36,3 @@ class CategoriesSkeletonLoading extends StatelessWidget {
     );
   }
 }
-
-//https://www.youtube.com/watch?v=SQnmuulYWPU

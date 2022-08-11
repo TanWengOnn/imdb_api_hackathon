@@ -48,11 +48,11 @@ class _SearchPageState extends State<SearchPage> {
         scrollDirection: Axis.vertical,
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               children: [
                 TextField(
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   textInputAction: TextInputAction.done,
                   onSubmitted: (value) {
                     if (titleController.text.isNotEmpty || movieGenres != '') {
@@ -78,17 +78,14 @@ class _SearchPageState extends State<SearchPage> {
               ],
             ),
           ),
-          Divider(height: 20, thickness: 1, indent: 0, endIndent: 0),
-          SizedBox(height: 10),
-          Container(
-            child: Text('Select Genres:',
-                style: Theme.of(context).textTheme.subtitle1),
-          ),
+          const Divider(height: 20, thickness: 1, indent: 0, endIndent: 0),
+          const SizedBox(height: 10),
+          Text('Select Genres:', style: Theme.of(context).textTheme.subtitle1),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                child: Container(
+                child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 60,
                   child: CarouselSlider.builder(
@@ -107,9 +104,8 @@ class _SearchPageState extends State<SearchPage> {
                                     setState(() {
                                       if (!movieGenres!
                                           .contains(genresList[index])) {
-                                        movieGenres = movieGenres! +
-                                            "," +
-                                            genresList[index];
+                                        movieGenres =
+                                            "${movieGenres!},${genresList[index]}";
                                       }
                                       if (movieGenres?.contains(
                                               "${genresList[index]}") ==
@@ -120,8 +116,8 @@ class _SearchPageState extends State<SearchPage> {
                                   },
                             child: Text(
                               genresList[index],
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 12),
+                              style: const TextStyle(
+                                  color: Colors.grey, fontSize: 12),
                             ),
                           ),
                         ],
@@ -143,23 +139,23 @@ class _SearchPageState extends State<SearchPage> {
                       });
                     }
                   },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    fixedSize: const Size(170, 30),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
                   child: Row(
                     children: [
                       Text("Apply Selection ",
                           style: Theme.of(context).textTheme.headline6),
-                      Icon(
+                      const Icon(
                         Icons.done,
                         color: Colors.green,
                       ),
                     ],
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    fixedSize: Size(170, 30),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
                   )),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
@@ -168,27 +164,27 @@ class _SearchPageState extends State<SearchPage> {
                         _isTagSelected.map<bool>((v) => false).toList();
                   });
                 },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    fixedSize: const Size(170, 30),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12))),
                 child: Row(
                   children: [
                     Text("Reset Selection ",
                         style: Theme.of(context).textTheme.headline6),
-                    Icon(Icons.refresh, color: Colors.blue),
+                    const Icon(Icons.refresh, color: Colors.blue),
                   ],
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    fixedSize: Size(170, 30),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12))),
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             movieGenres == '' ? '' : "Genre(s) Selected: $movieGenres",
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           BlocBuilder<SearchCubit, MoviesState>(
             bloc: cubit,
             builder: (context, state) {
@@ -205,16 +201,8 @@ class _SearchPageState extends State<SearchPage> {
                       style: Theme.of(context).textTheme.headline3,
                     ));
                   }
-
-                  // print("TEst: ${state.movieModel.results.toString()}");
                   return SearchMovieList(searchModel: state.movieModel);
                 }
-                // else {
-                //   // if (state is MoviesError) {
-                //   //   print(state.errorMessage);
-                //   // }
-
-                // }
               }
               return Text(state is MoviesError ? state.errorMessage : "");
             },

@@ -1,46 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
+import 'package:imdb_api_hackathon/theme/cubit_state_theme.dart';
 
 class GlobalTheme {
-  ThemeData globalTheme({required ThemeModal themeModal}) {
+  ThemeData globalTheme({required ThemeState state}) {
     return ThemeData(
         primarySwatch: Colors.red,
         scaffoldBackgroundColor:
-            themeModal.isDark ? Colors.black : Colors.white,
-        primaryColor: themeModal.isDark ? Colors.black : Colors.white,
-        backgroundColor: themeModal.isDark ? Colors.black : Color(0xffF1F5FB),
-        appBarTheme: themeModal.isDark
-            ? AppBarTheme(
+            state.theme.isDark ? Colors.black : Colors.white,
+        primaryColor: state.theme.isDark ? Colors.black : Colors.white,
+        backgroundColor:
+            state.theme.isDark ? Colors.black : const Color(0xffF1F5FB),
+        appBarTheme: state.theme.isDark
+            ? const AppBarTheme(
                 elevation: 1,
                 backgroundColor: Colors.black,
                 iconTheme: IconThemeData(
                   color: Color(0xFFE53935),
                 ))
-            : AppBarTheme(
+            : const AppBarTheme(
                 elevation: 1,
                 backgroundColor: Colors.white,
                 iconTheme: IconThemeData(
                   color: Color(0xFFE53935),
                 )),
-        cardColor:
-            themeModal.isDark ? Color.fromARGB(255, 43, 41, 41) : Colors.white,
-        dividerColor: themeModal.isDark ? Colors.white : Colors.black,
-        elevatedButtonTheme: themeModal.isDark
+        cardColor: state.theme.isDark
+            ? const Color.fromARGB(255, 43, 41, 41)
+            : Colors.white,
+        dividerColor: state.theme.isDark ? Colors.white : Colors.black,
+        elevatedButtonTheme: state.theme.isDark
             ? ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
                     side: BorderSide(color: Colors.red.shade700),
                     shadowColor: Colors.red[700],
-                    shape: StadiumBorder(),
+                    shape: const StadiumBorder(),
                     primary: Colors.red[700],
-                    fixedSize: Size(81, 25)))
+                    fixedSize: const Size(81, 25)))
             : ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
                     shadowColor: Colors.white,
-                    shape: StadiumBorder(),
+                    shape: const StadiumBorder(),
                     primary: Colors.white,
-                    fixedSize: Size(81, 25))),
-        textTheme: themeModal.isDark
-            ? TextTheme(
+                    fixedSize: const Size(81, 25))),
+        textTheme: state.theme.isDark
+            ? const TextTheme(
                 //App title, used for all appbar title and details page movie title
                 headline1: TextStyle(
                     fontSize: 25,
@@ -89,7 +91,7 @@ class GlobalTheme {
                     decoration: TextDecoration.none,
                     fontWeight: FontWeight.bold),
               )
-            : TextTheme(
+            : const TextTheme(
                 //App title, used for all appbar title and details page movie title
                 headline1: TextStyle(
                     fontSize: 25,

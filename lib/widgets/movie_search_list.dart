@@ -7,15 +7,18 @@ class SearchMovieList extends StatelessWidget {
       : super(key: key);
 
   final MovieModel searchModel;
+  // ignore: constant_identifier_names
   static const double SEARCH_POSTER_HEIGHT = 100;
+  // ignore: constant_identifier_names
   static const double SEARCH_POSTER_WIDTH = SEARCH_POSTER_HEIGHT / 4.0 * 3;
+  // ignore: constant_identifier_names
   static const double HEIGHT = 400;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: HEIGHT,
           child: ListView.builder(
             scrollDirection: Axis.vertical,

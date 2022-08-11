@@ -1,6 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:imdb_api_hackathon/models/movie_model.dart';
+import 'package:imdb_api_hackathon/services/api_keys.dart';
 
 class SearchService {
   Future<MovieModel> fetchSearchInformation(
@@ -8,17 +9,7 @@ class SearchService {
       String? genre,
       String? moviemeter,
       String? count}) async {
-    const String apiKey = "k_w8s2x30q";
-    // k_2b0tzkax
-    // k_mvigl067
-    // k_8dgpz1mi
-    // k_w8s2x30q
-    // k_l6oi3cob
-    // k_s4hmxd4c
-    // k_6jl1svx7
-    // k_vaew91xr
-    // k_fawnvhz5
-    // k_rkos0u75
+    const String apiKey = API_KEY;
 
     final Uri url = Uri(
       scheme: 'https',
