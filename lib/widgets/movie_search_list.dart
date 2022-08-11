@@ -8,13 +8,16 @@ class SearchMovieList extends StatelessWidget {
 
   final MovieModel searchModel;
   static const IMAGE_BORDER_RADIUS = 15.0;
+  static const double SEARCH_POSTER_HEIGHT = 100;
+  static const double SEARCH_POSTER_WIDTH = SEARCH_POSTER_HEIGHT / 4.0 * 3;
+  static const double HEIGHT = 400;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 400,
+          height: HEIGHT,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -39,23 +42,9 @@ class SearchMovieList extends StatelessWidget {
   }
 
   void navigateToDetailPage(BuildContext context, int index) {
-    Navigator.pushNamed(context, "/details-page",
-        arguments: DetailsPage(movieDetails: {
-          'id': searchModel.results.elementAt(index).id,
-          'title': searchModel.results.elementAt(index).title,
-          'image': searchModel.results.elementAt(index).image,
-          'plot': searchModel.results.elementAt(index).plot,
-          'description': searchModel.results.elementAt(index).description,
-          'contentRating': searchModel.results.elementAt(index).contentRating,
-          'runtimeStr': searchModel.results.elementAt(index).runtimeStr,
-          'imDbRating': searchModel.results.elementAt(index).imDbRating,
-          'imDbRatingVotes':
-              searchModel.results.elementAt(index).imDbRatingVotes,
-          'stars': searchModel.results.elementAt(index).stars,
-          'genres': searchModel.results.elementAt(index).genres,
-          // 'genreList': searchModel.results.elementAt(index).genreList,
-          // 'starList': searchModel.results.elementAt(index).starList,
-        }));
+    Navigator.pushNamed(context, DetailsPage.route,
+        arguments:
+            DetailsPage(movieDetails: searchModel.results.elementAt(index)));
   }
 
   Widget searchMovieCard(BuildContext context, int index) {
@@ -72,8 +61,8 @@ class SearchMovieList extends StatelessWidget {
             child: Image.network(
               searchModel.results.elementAt(index).image,
               fit: BoxFit.fill,
-              height: 100,
-              width: 80,
+              height: SEARCH_POSTER_HEIGHT,
+              width: SEARCH_POSTER_WIDTH,
             ),
           ),
           const SizedBox(width: 50),
@@ -83,7 +72,7 @@ class SearchMovieList extends StatelessWidget {
               children: [
                 Text(
                   '${searchModel.results.elementAt(index).title} ',
-                  style: Theme.of(context).textTheme.subtitle1,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
                 Row(
                   children: [
@@ -96,11 +85,12 @@ class SearchMovieList extends StatelessWidget {
                         searchModel.results.elementAt(index).imDbRating == ''
                             ? "N/A"
                             : "${searchModel.results.elementAt(index).imDbRating}/10",
-                        style: const TextStyle(color: Colors.black)),
+                        style: Theme.of(context).textTheme.headline3),
                   ],
                 ),
                 const SizedBox(height: 5),
-                Text(searchModel.results.elementAt(index).genres),
+                Text(searchModel.results.elementAt(index).genres,
+                    style: Theme.of(context).textTheme.headline4),
               ],
             ),
           )

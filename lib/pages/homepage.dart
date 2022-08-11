@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:imdb_api_hackathon/pages/search_page.dart';
 import 'package:imdb_api_hackathon/states/action_cubit.dart';
 import 'package:imdb_api_hackathon/states/comedy_cubit.dart';
 import 'package:imdb_api_hackathon/states/crime_cubit.dart';
@@ -14,20 +15,19 @@ import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_categories_loading.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_homepage_loading.dart';
 import 'package:provider/provider.dart';
+import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class HomePage extends StatefulWidget {
+  static const String route = '/';
+
   const HomePage({Key? key}) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  late final HomepageCubit homepageCubit;
-  late final ComedyCubit comedyCubit;
-  late final ActionCubit actionCubit;
-  late final FantasyCubit fantasyCubit;
-  late final HorrorCubit horrorCubit;
-  late final CrimeCubit crimeCubit;
+  // ignore: constant_identifier_names
 
   // ignore: constant_identifier_names
   static const double MOVIE_HEIGHT = 280;
@@ -37,6 +37,13 @@ class _HomePageState extends State<HomePage> {
   static const double CATEGORIES_HEIGHT = 160;
   // ignore: constant_identifier_names
   static const double CATEGORIES_WIDTH = CATEGORIES_HEIGHT / 4.0 * 3;
+
+  late final HomepageCubit homepageCubit;
+  late final ComedyCubit comedyCubit;
+  late final ActionCubit actionCubit;
+  late final FantasyCubit fantasyCubit;
+  late final HorrorCubit horrorCubit;
+  late final CrimeCubit crimeCubit;
 
   Widget getMovieInfo(
       {required MoviesState state,
@@ -87,14 +94,12 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         appBar: AppBar(
           title: Text("Movies", style: Theme.of(context).textTheme.headline1),
-          backgroundColor: Colors.white,
-          elevation: 1,
           actions: [
             Row(
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/search");
+                    Navigator.pushNamed(context, SearchPage.route);
                   },
                   icon: const Icon(
                     Icons.search,
@@ -109,9 +114,7 @@ class _HomePageState extends State<HomePage> {
                     size: 30,
                   ),
                   activeColor: Colors.grey.shade200,
-                  // activeSwitchBorder: Border.all(color: Colors.grey),
-                  // inactiveSwitchBorder: Border.all(color: Colors.white),
-                  inactiveColor: Colors.black,
+                  inactiveColor: Color.fromARGB(255, 49, 48, 48),
                   inactiveIcon:
                       Icon(Icons.nightlight, color: Colors.black, size: 30),
                   height: 30,
@@ -132,7 +135,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             SizedBox(height: 10),
             Text('Top 10 Movies/Series',
-                style: Theme.of(context).textTheme.headline3),
+                style: Theme.of(context).textTheme.headline2),
             BlocBuilder<HomepageCubit, MoviesState>(
               bloc: homepageCubit,
               builder: (context, state) {
@@ -140,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                     state: state, height: MOVIE_HEIGHT, width: MOVIE_WIDTH);
               },
             ),
-            Text("Comedy", style: Theme.of(context).textTheme.headline3),
+            Text("Comedy", style: Theme.of(context).textTheme.headline2),
             BlocBuilder<ComedyCubit, MoviesState>(
               bloc: comedyCubit,
               builder: (context, state) {
@@ -150,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                     width: CATEGORIES_WIDTH);
               },
             ),
-            // Text("Action", style: Theme.of(context).textTheme.headline3),
+            // Text("Action", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<ActionCubit, MoviesState>(
             //   bloc: actionCubit,
             //   builder: (context, state) {
@@ -160,7 +163,7 @@ class _HomePageState extends State<HomePage> {
             //         width: CATEGORIES_WIDTH);
             //   },
             // ),
-            // Text("Fantasy", style: Theme.of(context).textTheme.headline3),
+            // Text("Fantasy", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<FantasyCubit, MoviesState>(
             //   bloc: fantasyCubit,
             //   builder: (context, state) {
@@ -170,7 +173,7 @@ class _HomePageState extends State<HomePage> {
             //         width: CATEGORIES_WIDTH);
             //   },
             // ),
-            // Text("Horror", style: Theme.of(context).textTheme.headline3),
+            // Text("Horror", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<HorrorCubit, MoviesState>(
             //   bloc: horrorCubit,
             //   builder: (context, state) {
@@ -180,7 +183,7 @@ class _HomePageState extends State<HomePage> {
             //         width: CATEGORIES_WIDTH);
             //   },
             // ),
-            // Text("Crime", style: Theme.of(context).textTheme.headline3),
+            // Text("Crime", style: Theme.of(context).textTheme.headline2),
             // BlocBuilder<CrimeCubit, MoviesState>(
             //   bloc: crimeCubit,
             //   builder: (context, state) {

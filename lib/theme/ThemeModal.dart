@@ -1,5 +1,6 @@
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:imdb_api_hackathon/theme/theme_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
