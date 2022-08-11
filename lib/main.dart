@@ -103,7 +103,6 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
                 decoration: TextDecoration.none,
                 fontWeight: FontWeight.bold),
-            
           ),
         ),
         initialRoute: '/',
@@ -118,6 +117,7 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (_) => DetailsPage(movieDetails: data.movieDetails));
           }
+          // return null;
         });
   }
 }
