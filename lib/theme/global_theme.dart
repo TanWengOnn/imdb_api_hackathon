@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_api_hackathon/theme/cubit_state_theme.dart';
+import 'package:imdb_api_hackathon/states/cubits/cubit_state_theme.dart';
 
 class GlobalTheme {
   ThemeData globalTheme({required ThemeState state}) {

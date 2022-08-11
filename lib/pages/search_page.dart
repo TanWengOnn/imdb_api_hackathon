@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
-import 'package:imdb_api_hackathon/states/search_cubit.dart';
-import 'package:imdb_api_hackathon/widgets/movie_search_list.dart';
-import 'package:imdb_api_hackathon/widgets/skeleton_search_loading.dart';
+import 'package:imdb_api_hackathon/states/cubits/cubit_search.dart';
+import 'package:imdb_api_hackathon/widgets/movie_list_widgets/movie_search_list.dart';
+import 'package:imdb_api_hackathon/widgets/skeleton_widgets/skeleton_search_loading.dart';
 
 class SearchPage extends StatefulWidget {
   static const String route = '/search';

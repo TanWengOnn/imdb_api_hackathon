@@ -5,7 +5,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imdb_api_hackathon/models/movie_model.dart';
-import 'package:imdb_api_hackathon/states/trailer_cubit.dart';
+import 'package:imdb_api_hackathon/states/cubits/cubit_trailer.dart';
 import 'package:imdb_api_hackathon/states/trailer_state.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
