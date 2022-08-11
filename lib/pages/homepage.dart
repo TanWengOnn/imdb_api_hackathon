@@ -75,7 +75,6 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         appBar: AppBar(
           title: Text("Movies", style: Theme.of(context).textTheme.headline1),
-          
           actions: [
             Row(
               children: [
