@@ -40,11 +40,6 @@ class _DetailsPageState extends State<DetailsPage> {
       appBar: AppBar(
         title:
             Text("Movie Details", style: Theme.of(context).textTheme.headline1),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        iconTheme: IconThemeData(
-          color: ui.Color(0xFFE53935),
-        ),
       ),
       body: movieDetailsPage()
     );

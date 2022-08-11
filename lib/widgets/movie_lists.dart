@@ -75,11 +75,11 @@ class MovieList extends StatelessWidget {
                     Text(
                         '${searchModel.results.elementAt(index).title} '
                         '${searchModel.results.elementAt(index).description}',
-                        style: Theme.of(context).textTheme.subtitle1),
+                        style: Theme.of(context).textTheme.headline3),
                     Text(
                         '${searchModel.results.elementAt(index).genres} '
                         '• ${searchModel.results.elementAt(index).runtimeStr}',
-                         ),
+                        style: Theme.of(context).textTheme.subtitle1),
                   ],
                 ),
               ),

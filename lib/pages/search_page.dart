@@ -52,14 +52,8 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Search", style: Theme.of(context).textTheme.headline1),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        iconTheme: IconThemeData(
-          color: Color(0xFFE53935),
-        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),
@@ -104,8 +98,7 @@ class _SearchPageState extends State<SearchPage> {
           Container(
             
             child: Text('Select Genres:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-          ),
+                style: Theme.of(context).textTheme.headline3)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
