@@ -45,7 +45,7 @@ class MovieCategoryList extends StatelessWidget {
   }
 
   void navigateToDetailPage(BuildContext context, int index) {
-    Navigator.pushNamed(context, "/details-page",
+    Navigator.pushNamed(context, DetailsPage.route,
         arguments:
             DetailsPage(movieDetails: searchModel.results.elementAt(index)));
   }

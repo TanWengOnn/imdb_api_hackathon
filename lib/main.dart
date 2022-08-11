@@ -177,15 +177,15 @@ class MyApp extends StatelessWidget {
                               decoration: TextDecoration.none,
                               fontWeight: FontWeight.normal),
                         )),
-              initialRoute: '/',
+              initialRoute: HomePage.route,
               onGenerateRoute: (settings) {
                 switch (settings.name) {
-                  case '/':
+                  case HomePage.route:
                     return MaterialPageRoute(builder: (_) => const HomePage());
-                  case '/search':
+                  case SearchPage.route:
                     return MaterialPageRoute(
                         builder: (_) => const SearchPage());
-                  case '/details-page':
+                  case DetailsPage.route:
                     DetailsPage data = settings.arguments as DetailsPage;
                     return MaterialPageRoute(
                         builder: (_) =>

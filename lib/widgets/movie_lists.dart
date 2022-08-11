@@ -9,8 +9,8 @@ class MovieList extends StatelessWidget {
   const MovieList({Key? key, required this.searchModel}) : super(key: key);
 
   final MovieModel searchModel;
-  static const double TOP10_POSTER_HEIGHT = 280;
-  static const double TOP10_POSTER_WIDTH = TOP10_POSTER_HEIGHT / 4.0 * 3;
+  static const double MAIN_POSTER_HEIGHT = 280;
+  static const double MAIN_POSTER_WIDTH = MAIN_POSTER_HEIGHT / 4.0 * 3;
   static const double HEIGHT = 340;
 
   @override
@@ -49,8 +49,8 @@ class MovieList extends StatelessWidget {
                       child: Image.network(
                         searchModel.results.elementAt(index).image,
                         fit: BoxFit.fill,
-                        height: TOP10_POSTER_HEIGHT,
-                        width: TOP10_POSTER_WIDTH,
+                        height: MAIN_POSTER_HEIGHT,
+                        width: MAIN_POSTER_WIDTH,
                       ),
                     ),
                     Text(
@@ -81,7 +81,7 @@ class MovieList extends StatelessWidget {
   }
 
   void navigateToDetailPage(BuildContext context, int index) {
-    Navigator.pushNamed(context, "/details-page",
+    Navigator.pushNamed(context, DetailsPage.route,
         arguments:
             DetailsPage(movieDetails: searchModel.results.elementAt(index)));
   }
@@ -102,8 +102,8 @@ class MovieList extends StatelessWidget {
             child: Image.network(
               searchModel.results.elementAt(index).image,
               fit: BoxFit.fill,
-              height: TOP10_POSTER_HEIGHT,
-              width: TOP10_POSTER_WIDTH,
+              height: MAIN_POSTER_HEIGHT,
+              width: MAIN_POSTER_WIDTH,
             ),
           ),
           Text(

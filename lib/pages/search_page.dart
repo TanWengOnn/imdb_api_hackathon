@@ -8,6 +8,8 @@ import 'package:imdb_api_hackathon/widgets/movie_search_list.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_search_loading.dart';
 
 class SearchPage extends StatefulWidget {
+  static const String route = '/search';
+
   const SearchPage({Key? key}) : super(key: key);
 
   @override

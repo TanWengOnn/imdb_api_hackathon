@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imdb_api_hackathon/pages/search_page.dart';
 import 'package:imdb_api_hackathon/states/action_cubit.dart';
 import 'package:imdb_api_hackathon/states/comedy_cubit.dart';
 import 'package:imdb_api_hackathon/states/crime_cubit.dart';
@@ -16,18 +17,15 @@ import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
 import 'package:switcher_button/switcher_button.dart';
 
 class HomePage extends StatefulWidget {
+  static const String route = '/';
+
   const HomePage({Key? key}) : super(key: key);
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  late final HomepageCubit homepageCubit;
-  late final ComedyCubit comedyCubit;
-  late final ActionCubit actionCubit;
-  late final FantasyCubit fantasyCubit;
-  late final HorrorCubit horrorCubit;
-  late final CrimeCubit crimeCubit;
+  // ignore: constant_identifier_names
 
   // ignore: constant_identifier_names
   static const double MOVIE_HEIGHT = 280;
@@ -37,6 +35,13 @@ class _HomePageState extends State<HomePage> {
   static const double CATEGORIES_HEIGHT = 160;
   // ignore: constant_identifier_names
   static const double CATEGORIES_WIDTH = CATEGORIES_HEIGHT / 4.0 * 3;
+
+  late final HomepageCubit homepageCubit;
+  late final ComedyCubit comedyCubit;
+  late final ActionCubit actionCubit;
+  late final FantasyCubit fantasyCubit;
+  late final HorrorCubit horrorCubit;
+  late final CrimeCubit crimeCubit;
 
   Widget getMovieInfo(
       {required MoviesState state,
@@ -94,7 +99,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/search");
+                    Navigator.pushNamed(context, SearchPage.route);
                   },
                   icon: const Icon(
                     Icons.search,

@@ -7,13 +7,16 @@ class SearchMovieList extends StatelessWidget {
       : super(key: key);
 
   final MovieModel searchModel;
+  static const double SEARCH_POSTER_HEIGHT = 100;
+  static const double SEARCH_POSTER_WIDTH = SEARCH_POSTER_HEIGHT / 4.0 * 3;
+  static const double HEIGHT = 400;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          height: 400,
+          height: HEIGHT,
           child: ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -38,7 +41,7 @@ class SearchMovieList extends StatelessWidget {
   }
 
   void navigateToDetailPage(BuildContext context, int index) {
-    Navigator.pushNamed(context, "/details-page",
+    Navigator.pushNamed(context, DetailsPage.route,
         arguments:
             DetailsPage(movieDetails: searchModel.results.elementAt(index)));
   }
@@ -57,8 +60,8 @@ class SearchMovieList extends StatelessWidget {
             child: Image.network(
               searchModel.results.elementAt(index).image,
               fit: BoxFit.fill,
-              height: 100,
-              width: 80,
+              height: SEARCH_POSTER_HEIGHT,
+              width: SEARCH_POSTER_WIDTH,
             ),
           ),
           const SizedBox(width: 50),
