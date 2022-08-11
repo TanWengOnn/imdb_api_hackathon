@@ -25,13 +25,13 @@ class TrailerModel {
       TrailerModel.fromMap(json.decode(str));
 
   factory TrailerModel.fromMap(Map<String, dynamic> json) => TrailerModel(
-        imDbId: json["imDbId"],
-        title: json["title"],
-        fullTitle: json["fullTitle"],
-        type: json["type"],
-        year: json["year"],
-        videoId: json["videoId"],
-        videoUrl: json["videoUrl"],
-        errorMessage: json["errorMessage"],
+        imDbId: json["imDbId"] ?? '',
+        title: json["title"] ?? '',
+        fullTitle: json["fullTitle"] ?? '',
+        type: json["type"] ?? '',
+        year: json["year"] ?? '',
+        videoId: json["videoId"] ?? '',
+        videoUrl: json["videoUrl"] ?? '',
+        errorMessage: json["errorMessage"] ?? '',
       );
 }

@@ -11,6 +11,9 @@ import 'package:imdb_api_hackathon/states/movie_state.dart';
 import 'package:imdb_api_hackathon/widgets/movie_lists.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_categories_loading.dart';
 import 'package:imdb_api_hackathon/widgets/skeleton_homepage_loading.dart';
+import 'package:provider/provider.dart';
+import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
+import 'package:switcher_button/switcher_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -68,8 +71,8 @@ class _HomePageState extends State<HomePage> {
       ..fetchHomepage(moviemeter: '1,10');
     comedyCubit = BlocProvider.of<ComedyCubit>(context)
       ..fetchComedy(genres: 'Comedy', count: '10');
-    actionCubit = BlocProvider.of<ActionCubit>(context)
-      ..fetchAction(genres: 'Action', count: '10');
+    // actionCubit = BlocProvider.of<ActionCubit>(context)
+    //   ..fetchAction(genres: 'Action', count: '10');
     // fantasyCubit = BlocProvider.of<FantasyCubit>(context)
     //   ..fetchFantasy(genres: 'Fantasy', count: '10');
     // horrorCubit = BlocProvider.of<HorrorCubit>(context)
@@ -80,91 +83,105 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Movies", style: Theme.of(context).textTheme.headline1),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/search");
-            },
-            icon: const Icon(
-              Icons.search,
-              size: 30,
+    return Consumer(builder: (context, ThemeModal themeNotifier, child) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("Movies", style: Theme.of(context).textTheme.headline1),
+          backgroundColor: Colors.white,
+          elevation: 1,
+          actions: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/search");
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                    size: 30,
+                  ),
+                  color: Color(0xFFE53935),
+                ),
+                SwitcherButton(
+                  value: themeNotifier.isDark ? false : true,
+                  onChange: (value) {
+                    themeNotifier.isDark
+                        ? themeNotifier.isDark = false
+                        : themeNotifier.isDark = true;
+                  },
+                )
+              ],
             ),
-            color: const Color(0xFFE53935),
-          )
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-        scrollDirection: Axis.vertical,
-        // shrinkWrap: true,
-        children: [
-          const SizedBox(height: 10),
-          Text('Top 10 Movies/Series',
-              style: Theme.of(context).textTheme.headline3),
-          BlocBuilder<HomepageCubit, MoviesState>(
-            bloc: homepageCubit,
-            builder: (context, state) {
-              return getMovieInfo(
-                  state: state, height: MOVIE_HEIGHT, width: MOVIE_WIDTH);
-            },
-          ),
-          Text("Comedy", style: Theme.of(context).textTheme.headline3),
-          BlocBuilder<ComedyCubit, MoviesState>(
-            bloc: comedyCubit,
-            builder: (context, state) {
-              return getMovieCategoriesInfo(
-                  state: state,
-                  height: CATEGORIES_HEIGHT,
-                  width: CATEGORIES_WIDTH);
-            },
-          ),
-          Text("Action", style: Theme.of(context).textTheme.headline3),
-          BlocBuilder<ActionCubit, MoviesState>(
-            bloc: actionCubit,
-            builder: (context, state) {
-              return getMovieCategoriesInfo(
-                  state: state,
-                  height: CATEGORIES_HEIGHT,
-                  width: CATEGORIES_WIDTH);
-            },
-          ),
-          // Text("Fantasy", style: Theme.of(context).textTheme.headline3),
-          // BlocBuilder<FantasyCubit, MoviesState>(
-          //   bloc: fantasyCubit,
-          //   builder: (context, state) {
-          //     return getMovieCategoriesInfo(
-          //         state: state,
-          //         height: CATEGORIES_HEIGHT,
-          //         width: CATEGORIES_WIDTH);
-          //   },
-          // ),
-          // Text("Horror", style: Theme.of(context).textTheme.headline3),
-          // BlocBuilder<HorrorCubit, MoviesState>(
-          //   bloc: horrorCubit,
-          //   builder: (context, state) {
-          //     return getMovieCategoriesInfo(
-          //         state: state,
-          //         height: CATEGORIES_HEIGHT,
-          //         width: CATEGORIES_WIDTH);
-          //   },
-          // ),
-          // Text("Crime", style: Theme.of(context).textTheme.headline3),
-          // BlocBuilder<CrimeCubit, MoviesState>(
-          //   bloc: crimeCubit,
-          //   builder: (context, state) {
-          //     return getMovieCategoriesInfo(
-          //         state: state,
-          //         height: CATEGORIES_HEIGHT,
-          //         width: CATEGORIES_WIDTH);
-          //   },
-          // ),
-        ],
-      ),
-    );
+          ],
+        ),
+        body: ListView(
+          padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+          scrollDirection: Axis.vertical,
+          // shrinkWrap: true,
+          children: [
+            SizedBox(height: 10),
+            Text('Top 10 Movies/Series',
+                style: Theme.of(context).textTheme.headline3),
+            BlocBuilder<HomepageCubit, MoviesState>(
+              bloc: homepageCubit,
+              builder: (context, state) {
+                return getMovieInfo(
+                    state: state, height: MOVIE_HEIGHT, width: MOVIE_WIDTH);
+              },
+            ),
+            Text("Comedy", style: Theme.of(context).textTheme.headline3),
+            BlocBuilder<ComedyCubit, MoviesState>(
+              bloc: comedyCubit,
+              builder: (context, state) {
+                return getMovieCategoriesInfo(
+                    state: state,
+                    height: CATEGORIES_HEIGHT,
+                    width: CATEGORIES_WIDTH);
+              },
+            ),
+            // Text("Action", style: Theme.of(context).textTheme.headline3),
+            // BlocBuilder<ActionCubit, MoviesState>(
+            //   bloc: actionCubit,
+            //   builder: (context, state) {
+            //     return getMovieCategoriesInfo(
+            //         state: state,
+            //         height: CATEGORIES_HEIGHT,
+            //         width: CATEGORIES_WIDTH);
+            //   },
+            // ),
+            // Text("Fantasy", style: Theme.of(context).textTheme.headline3),
+            // BlocBuilder<FantasyCubit, MoviesState>(
+            //   bloc: fantasyCubit,
+            //   builder: (context, state) {
+            //     return getMovieCategoriesInfo(
+            //         state: state,
+            //         height: CATEGORIES_HEIGHT,
+            //         width: CATEGORIES_WIDTH);
+            //   },
+            // ),
+            // Text("Horror", style: Theme.of(context).textTheme.headline3),
+            // BlocBuilder<HorrorCubit, MoviesState>(
+            //   bloc: horrorCubit,
+            //   builder: (context, state) {
+            //     return getMovieCategoriesInfo(
+            //         state: state,
+            //         height: CATEGORIES_HEIGHT,
+            //         width: CATEGORIES_WIDTH);
+            //   },
+            // ),
+            // Text("Crime", style: Theme.of(context).textTheme.headline3),
+            // BlocBuilder<CrimeCubit, MoviesState>(
+            //   bloc: crimeCubit,
+            //   builder: (context, state) {
+            //     return getMovieCategoriesInfo(
+            //         state: state,
+            //         height: CATEGORIES_HEIGHT,
+            //         width: CATEGORIES_WIDTH);
+            //   },
+            // ),
+          ],
+        ),
+      );
+    });
   }
 }
