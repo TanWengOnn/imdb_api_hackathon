@@ -8,7 +8,7 @@ class SearchService {
       String? genre,
       String? moviemeter,
       String? count}) async {
-    const String apiKey = "k_w8s2x30q";
+    const String apiKey = "k_l6oi3cob";
     // k_2b0tzkax
     // k_mvigl067
     // k_8dgpz1mi

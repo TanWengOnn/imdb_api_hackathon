@@ -39,8 +39,6 @@ dependencies:
   youtube_player_flutter: ^8.1.0
   skeleton_text: ^3.0.0
   carousel_slider: ^4.1.1
-  shared_preferences: ^2.0.15
-  provider: ^6.0.3
   flutter_switch: ^0.3.2
 
 dev_dependencies:

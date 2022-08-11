@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:imdb_api_hackathon/theme/ThemeModal.dart';
+import 'package:imdb_api_hackathon/theme/cubit_state_theme.dart';
 
 class GlobalTheme {
-  ThemeData globalTheme({required ThemeModal themeModal}) {
+  ThemeData globalTheme({required ThemeState themeModal}) {
     return ThemeData(
         primarySwatch: Colors.red,
         scaffoldBackgroundColor:
-            themeModal.isDark ? Colors.black : Colors.white,
-        primaryColor: themeModal.isDark ? Colors.black : Colors.white,
-        backgroundColor: themeModal.isDark ? Colors.black : Color(0xffF1F5FB),
-        appBarTheme: themeModal.isDark
+            themeModal.theme.isDark ? Colors.black : Colors.white,
+        primaryColor: themeModal.theme.isDark ? Colors.black : Colors.white,
+        backgroundColor: themeModal.theme.isDark ? Colors.black : Color(0xffF1F5FB),
+        appBarTheme: themeModal.theme.isDark
             ? AppBarTheme(
                 elevation: 1,
                 backgroundColor: Colors.black,
@@ -23,9 +23,9 @@ class GlobalTheme {
                   color: Color(0xFFE53935),
                 )),
         cardColor:
-            themeModal.isDark ? Color.fromARGB(255, 43, 41, 41) : Colors.white,
-        dividerColor: themeModal.isDark ? Colors.white : Colors.black,
-        elevatedButtonTheme: themeModal.isDark
+            themeModal.theme.isDark ? Color.fromARGB(255, 43, 41, 41) : Colors.white,
+        dividerColor: themeModal.theme.isDark ? Colors.white : Colors.black,
+        elevatedButtonTheme: themeModal.theme.isDark
             ? ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
                     side: BorderSide(color: Colors.red.shade700),
@@ -39,7 +39,7 @@ class GlobalTheme {
                     shape: StadiumBorder(),
                     primary: Colors.white,
                     fixedSize: Size(81, 25))),
-        textTheme: themeModal.isDark
+        textTheme: themeModal.theme.isDark
             ? TextTheme(
                 //App title, used for all appbar title and details page movie title
                 headline1: TextStyle(
