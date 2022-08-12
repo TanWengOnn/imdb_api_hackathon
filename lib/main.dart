@@ -10,7 +10,7 @@ import 'package:imdb_api_hackathon/states/cubits/cubit_homepage.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_horror.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_search.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_trailer.dart';
-import 'package:imdb_api_hackathon/states/cubits/cubit_state_theme.dart';
+import 'package:imdb_api_hackathon/states/theme_state.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_theme.dart';
 import 'package:imdb_api_hackathon/theme/global_theme.dart';
 

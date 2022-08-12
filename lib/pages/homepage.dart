@@ -9,7 +9,7 @@ import 'package:imdb_api_hackathon/states/cubits/cubit_fantasy.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_homepage.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_horror.dart';
 import 'package:imdb_api_hackathon/states/movie_state.dart';
-import 'package:imdb_api_hackathon/states/cubits/cubit_state_theme.dart';
+import 'package:imdb_api_hackathon/states/theme_state.dart';
 import 'package:imdb_api_hackathon/states/cubits/cubit_theme.dart';
 import 'package:imdb_api_hackathon/widgets/movie_list_widgets/movie_category_list.dart';
 import 'package:imdb_api_hackathon/widgets/movie_list_widgets/movie_lists.dart';
