@@ -16,4 +16,5 @@
 <img src="screenshots/movie_detail-light.png" width="280" height="420">      <img src="screenshots/movie_detail-dark.png" width="280" height="420">
 
 ## Trailer
+1. Movie Trailer  
 <img src="screenshots/trailer.png" width="280" height="420"> 
