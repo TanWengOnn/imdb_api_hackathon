@@ -117,17 +117,16 @@ class _DetailsPageState extends State<DetailsPage> {
                             '${widget.movieDetails.runtimeStr}',
                             style: Theme.of(context).textTheme.subtitle2),
                         const SizedBox(height: NORMAL_SPACE),
-                        const Text(
-                          "Plot Summary",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                        const Text("Plot Summary",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                ),
                         ),
                         const SizedBox(height: BELOW_TITLE_SPACE),
-                        Text(
-                          widget.movieDetails.plot,
-                          style: Theme.of(context).textTheme.headline5,
+                        Text(widget.movieDetails.plot,
+                            style: Theme.of(context).textTheme.headline5,
                           textAlign: TextAlign.justify,
                         ),
                         const SizedBox(height: NORMAL_SPACE),

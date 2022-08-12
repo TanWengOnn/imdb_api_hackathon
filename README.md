@@ -1,23 +1,20 @@
-# To-Dos
-1. Homepage  
-- Show movie lists
-- Show genre selection 
-- Search bar is homepage
-2. Movie detail page 
-- Navigate to this page when a movie is selected
-3. Search page (optional)
-4. Navbar (optional)
-5. More details about the movie (OPTIONAL)
+# IMDB API Movie Flutter Application
+## Homepage
+1. Light Mode  
+<img src="screenshots/homepage-light_1.png" width="280" height="420">      <img src="screenshots/homepage-light_2.png" width="280" height="420">
+2. Dark Mode  
+<img src="screenshots/homepage-dark_1.png" width="280" height="420">      <img src="screenshots/homepage-dark_2.png" width="280" height="420">
 
-# new Todo
-1. Route
-2. const var for all movie lists
-3. const var for image radii (movie_category_list, movie_list, movie_search_list)
+## Search Page
+1. Light Mode  
+<img src="screenshots/search-light_1.png" width="280" height="420">      <img src="screenshots/search-light_2.png" width="280" height="420">
+2. Dark Mode  
+<img src="screenshots/search-dark_1.png" width="280" height="420">      <img src="screenshots/search-dark_2.png" width="280" height="420">
 
-# Change to sized box
-1. movie_details_page ln 201
-2. search_page ln 88
-3. movie_list ln 19
-4. movie_search_list ln 21
-5. skeleton_cat_loading ln 17
-6. skeleton_search_loading ln 16
+## Movie Detail Page
+1. Light Mode and Dark Mode  
+<img src="screenshots/movie_detail-light.png" width="280" height="420">      <img src="screenshots/movie_detail-dark.png" width="280" height="420">
+
+## Trailer
+1. Movie Trailer  
+<img src="screenshots/trailer.png" width="280" height="420"> 

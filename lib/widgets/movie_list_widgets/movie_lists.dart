@@ -18,7 +18,6 @@ class MovieList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: HEIGHT,
-      // child: ListView.builder(
       child: CarouselSlider.builder(
         options: CarouselOptions(
             height: HEIGHT,

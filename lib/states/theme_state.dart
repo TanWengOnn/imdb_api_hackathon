@@ -9,6 +9,7 @@ class DarkTheme extends ThemeState {
   DarkTheme(bool isDark) : super(IsDark(isDark));
 }
 
+//model 
 class IsDark {
   final bool isDark;
 
