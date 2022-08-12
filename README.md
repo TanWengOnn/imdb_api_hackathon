@@ -1,7 +1,7 @@
 # IMDB API Movie Flutter Application
 ## Homepage
 1. Light Mode
-![image](screenshots/homepage-light_1.png | width=300)  ![image](screenshots/homepage-light_2.png =300x400)
+<img src="screenshots/homepage-light_1.png" width="150" height="280"> ![image](screenshots/homepage-light_2.png =300x400)
 2. Dark Mode
 ![image](screenshots/homepage-dark_1.png =300x400)  ![image](screenshots/homepage-dark_2.png =300x400)
 ## Search Page
